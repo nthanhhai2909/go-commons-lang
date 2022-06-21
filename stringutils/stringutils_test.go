@@ -1,6 +1,8 @@
 package stringutils
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestIsEmpty(t *testing.T) {
 	if !IsEmpty(EMPTY) ||
@@ -137,5 +139,45 @@ func TestIsAlphanumeric(t *testing.T) {
 		!IsAlphanumeric("ab2c") ||
 		IsAlphanumeric("ab-c") {
 		t.Errorf("IsAlphanumeric func don't work correctly")
+	}
+}
+
+func TestLength(t *testing.T) {
+	if Length(EMPTY) != 0 || Length("abc") != 3 {
+		t.Errorf("Length func don't work correctly")
+	}
+}
+
+func TestIndexOf(t *testing.T) {
+	if IndexOf("", "") != 0 ||
+		IndexOf("aaa", "b") != -1 ||
+		IndexOf("aabaabaa", "a") != 0 ||
+		IndexOf("", "") != 0 ||
+		IndexOf("aabaabaa", "b") != 2 ||
+		IndexOf("aabaabaa", "ab") != 1 ||
+		IndexOf("aabaabaa", "") != 0 {
+		t.Errorf("IndexOf func don't work correctly")
+	}
+}
+
+func TestLastIndexOf(t *testing.T) {
+	if LastIndexOf("", "") != 0 ||
+		LastIndexOf("aaa", "b") != -1 ||
+		LastIndexOf("aabaabaa", "a") != 7 ||
+		LastIndexOf("", "") != 0 ||
+		LastIndexOf("aabaabaa", "b") != 5 ||
+		LastIndexOf("aabaabaa", "ab") != 4 ||
+		LastIndexOf("aabaabaa", "") != 8 {
+		t.Errorf("LastIndexOf func don't work correctly")
+	}
+}
+
+func TestCapitalize(t *testing.T) {
+	if Capitalize("") != "" ||
+		Capitalize(" ") != " " ||
+		Capitalize("cat") != "Cat" ||
+		Capitalize("dog cat") != "Dog cat" ||
+		Capitalize("DOG CAT") != "DOG CAT" {
+		t.Errorf("Capitalize func don't work correctly")
 	}
 }

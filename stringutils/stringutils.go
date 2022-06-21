@@ -310,7 +310,6 @@ func IsAlpha(cs string) bool {
  * An empty CharSequence (length()=0) will return {@code false}.</p>
  *
  * <pre>
-
  * IsAlphanumeric("")     = false
  * IsAlphanumeric("  ")   = false
  * IsAlphanumeric("abc")  = true
@@ -335,4 +334,82 @@ func IsAlphanumeric(cs string) bool {
 	}
 
 	return true
+}
+
+/**
+ * <p>Get the string length.</p>
+ * <pre>
+ * Length(") = 0
+ * Length("abc") = 3
+ * </pre>
+ * @param cs  the string to get length
+ * @return string length
+ */
+
+func Length(cs string) int {
+	return len(cs)
+}
+
+/**
+ * @param @str string and @sub substr to check index
+ * <pre>
+ * IndexOf("", "") 					= 0
+ * IndexOf("aaa", "b") 				= -1
+ * IndexOf("aabaabaa", "a") 		= 0
+ * IndexOf("", "") 					= 0
+ * IndexOf("aabaabaa", "b") 		= 2
+ * IndexOf("aabaabaa", "ab") 		= 1
+ * IndexOf("aabaabaa", "") 			= 0
+ * </pre>
+ * @return the index of the first instance of substr in s, or -1 if substr is not present in str.
+ */
+
+func IndexOf(str, sub string) int {
+	return strings.Index(str, sub)
+}
+
+/**
+ * @param @str string and @sub substr to check index
+ * <pre>
+ * LastIndexOf("", "")				= 0
+ * LastIndexOf("aaa", "b")  		= -1
+ * LastIndexOf("aabaabaa", "a") 	= 7
+ * LastIndexOf("", "") 				= 0
+ * LastIndexOf("aabaabaa", "b") 	= 5
+ * LastIndexOf("aabaabaa", "ab") 	= 4
+ * LastIndexOf("aabaabaa", "") 		= 8
+ * </pre>
+ * @return the index of the last instance of substr in s, or -1 if substr is not present in str.
+ */
+
+func LastIndexOf(str, sub string) int {
+	return strings.LastIndex(str, sub)
+}
+
+/**
+ * Capitalizes a String changing the first character to title case as
+ * <pre>
+ * Capitalize("") = 			""
+ * Capitalize(" ") = 			" "
+ * Capitalize("cat") 			= "Cat"
+ * Capitalize("dog cat") 		= "Dog cat"
+ * Capitalize("DOG CAT") 		= "DOG CAT"
+ * </pre>
+ * @param the string to capitalize
+ * @return the capitalized String
+ */
+
+func Capitalize(cs string) string {
+	if IsEmpty(cs) {
+		return cs
+	}
+
+	runes := make([]rune, 0)
+	index := 0
+	for _, c := range cs {
+		runes = append(runes, c)
+		index++
+	}
+	runes[0] = unicode.ToUpper(runes[0])
+	return string(runes)
 }
