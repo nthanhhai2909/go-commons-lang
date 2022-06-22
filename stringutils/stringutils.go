@@ -10,7 +10,7 @@ const (
 )
 
 /**
- * <p>Checks if a string is empty ("").</p>
+ * Checks if a string is empty ("").
  *
  * <pre>
  * IsEmpty("")        = true
@@ -28,7 +28,7 @@ func IsEmpty(cs string) bool {
 }
 
 /**
- * <p>Checks if a string is not empty (#"").</p>
+ * Checks if a string is not empty (#"").
  *
  * <pre>
  * IsNotEmpty("")        = false
@@ -46,7 +46,7 @@ func IsNotEmpty(cs string) bool {
 }
 
 /**
- * <p>Checks if a string is empty ("") or whitespace only.</p>
+ * Checks if a string is empty ("") or whitespace only.
  *
  * <pre>
  * IsBlank("")        = true
@@ -72,7 +72,7 @@ func IsBlank(cs string) bool {
 }
 
 /**
- * <p>Checks if a string is not empty ("") and not whitespace only.</p>
+ * Checks if a string is not empty ("") and not whitespace only.
  *
  * <pre>
  * IsNotBlank("")        = false
@@ -90,9 +90,9 @@ func IsNotBlank(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only Unicode digits.
- * A decimal point is not a Unicode digit and returns false.</p>
- * An empty string (length()=0) will return {@code false}.</p>
+ * Checks if the string contains only Unicode digits.
+ * A decimal point is not a Unicode digit and returns false.
+ * An empty string (length()=0) will return {@code false}.
  *
  * <pre>
  * IsNumeric("")     = false
@@ -125,9 +125,9 @@ func IsNumeric(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only Unicode digits or whitespace.
- * A decimal point is not a Unicode digit and returns false.</p>
- * An empty string (length()=0) will return {@code false}.</p>
+ * Checks if the string contains only Unicode digits or whitespace.
+ * A decimal point is not a Unicode digit and returns false.
+ * An empty string (length()=0) will return {@code false}.
  *
  * <pre>
  * IsNumericSpace("")     = true
@@ -156,9 +156,9 @@ func IsNumericSpace(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only whitespace.</p>
+ * Checks if the string contains only whitespace.
  *
- * An empty string (length()=0) will return {@code true}.</p>
+ * An empty string (length()=0) will return {@code true}.
  *
  * IsWhiteSpace("")     = true
  * IsWhiteSpace("  ")   = true
@@ -182,7 +182,7 @@ func IsWhiteSpace(cs string) bool {
 }
 
 /**
- * <p>Converts a String to upper case as per {@link strings#ToUpper()}.</p>
+ * Converts a String to upper case as per {@link strings#ToUpper()}.
  * <pre>
  * UpperCase("")    = ""
  * UpperCase("aBc") = "ABC"
@@ -196,7 +196,7 @@ func UpperCase(cs string) string {
 }
 
 /**
- * <p>Converts a String to lowser case as per {@link strings#ToLower()}.</p>
+ * Converts a String to lowser case as per {@link strings#ToLower()}.
  * <pre>
  * UpperCase("")    = ""
  * UpperCase("aBc") = "abc"
@@ -210,9 +210,8 @@ func LowerCase(cs string) string {
 }
 
 /**
- * <p>Checks if the string contains only uppercase characters.</p>
- *
- * An empty String (length()=0) will return {@code false}.</p>
+ * Checks if the string contains only uppercase characters.
+ * An empty String (length()=0) will return {@code false}.
  *
  * <pre>
  * IsAllUpperCase("")     = false
@@ -241,7 +240,7 @@ func IsAllUpperCase(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only lowercase characters.</p>
+ * Checks if the string contains only lowercase characters
  *
  * An empty string (length()=0) will return {@code false}.</p>
  *
@@ -274,10 +273,8 @@ func IsAllLowerCase(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only Unicode letters.</p>
- *
- * An empty CharSequence (length()=0) will return {@code false}.</p>
- *
+ * Checks if the string contains only Unicode letters.
+ * An empty string (length()=0) will return {@code false}.
  * <pre>
  * IsAlpha("")     = false
  * IsAlpha("  ")   = false
@@ -305,9 +302,7 @@ func IsAlpha(cs string) bool {
 }
 
 /**
- * <p>Checks if the string contains only Unicode letters or digits.</p>
- *
- * An empty CharSequence (length()=0) will return {@code false}.</p>
+ * Checks if the string contains only Unicode letters or digits.
  *
  * <pre>
  * IsAlphanumeric("")     = false
@@ -337,7 +332,7 @@ func IsAlphanumeric(cs string) bool {
 }
 
 /**
- * <p>Get the string length.</p>
+ * Get the string length.
  * <pre>
  * Length(") = 0
  * Length("abc") = 3
@@ -351,7 +346,7 @@ func Length(cs string) int {
 }
 
 /**
- * @param @str string and @sub substr to check index
+ * Get index of sub string in str string
  * <pre>
  * IndexOf("", "") 					= 0
  * IndexOf("aaa", "b") 				= -1
@@ -361,15 +356,46 @@ func Length(cs string) int {
  * IndexOf("aabaabaa", "ab") 		= 1
  * IndexOf("aabaabaa", "") 			= 0
  * </pre>
- * @return the index of the first instance of substr in s, or -1 if substr is not present in str.
+ *
+ * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
-func IndexOf(str, sub string) int {
+func Index(str, sub string) int {
 	return strings.Index(str, sub)
 }
 
 /**
- * @param @str string and @sub substr to check index
+ * Get index of @sub string in @str string start from @start index
+ * <pre>
+ * IndexStartAt("", "a", 0) 		= -1
+ * IndexStartAt("aaa", "a", 3) 		= -1
+ * IndexStartAt("aaa", "a", 2) 		= 2
+ * IndexStartAt("aaa", "b", 0) 		= -1
+ * IndexStartAt("abc", "b", 0) 		= 1
+ * IndexStartAt("abc", "b", 1)		= 1
+ * IndexStartAt("abc", "b", 2) 		= -1
+ * </pre>
+ * @params @str - parent string, @sub - sub string and @start index
+ * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ */
+
+func IndexAt(str, sub string, start int) int {
+	if start < 0 {
+		start = 0
+	}
+
+	if start > len(str) {
+		return -1
+	}
+	index := strings.Index(str[start:], sub)
+	if index == -1 {
+		return index
+	}
+	return index + start
+}
+
+/**
+ * Get last index of @sub string in @str string
  * <pre>
  * LastIndexOf("", "")				= 0
  * LastIndexOf("aaa", "b")  		= -1
@@ -379,11 +405,43 @@ func IndexOf(str, sub string) int {
  * LastIndexOf("aabaabaa", "ab") 	= 4
  * LastIndexOf("aabaabaa", "") 		= 8
  * </pre>
- * @return the index of the last instance of substr in s, or -1 if substr is not present in str.
+ * @param @str string and @sub substr to check index
+ * @return the index of the last instance of substr in s, or -1 if sub is not present in str.
  */
 
-func LastIndexOf(str, sub string) int {
+func LastIndex(str, sub string) int {
 	return strings.LastIndex(str, sub)
+}
+
+/**
+ * Get last index of @sub string in @str string start from @start index
+ * <pre>
+ * LastIndexAt("aaa", "a", -1) 		= 2
+ * LastIndexAt("", "", 0) 			= 0
+ * LastIndexAt("aaa", "a", 0) 		= 2
+ * LastIndexAt("aaa", "aaaa", 0) 	= -1
+ * LastIndexAt("aaa", "b", 0) 		= -1
+ * LastIndexAt("aaa", "a", 3) 		= -1
+ * LastIndexAt("aaa", "a", 2) 		= 2
+ * LastIndexAt("aaa", "a", 1) 		= 2
+ * </pre>
+ * @params @str - parent string, @sub - sub string and @start index
+ * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ */
+
+func LastIndexAt(str, sub string, start int) int {
+	if start < 0 {
+		start = 0
+	}
+
+	if start > len(str) {
+		return -1
+	}
+	index := strings.LastIndex(str[start:], sub)
+	if index == -1 {
+		return index
+	}
+	return index + start
 }
 
 /**

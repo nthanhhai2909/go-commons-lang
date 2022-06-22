@@ -148,27 +148,53 @@ func TestLength(t *testing.T) {
 	}
 }
 
-func TestIndexOf(t *testing.T) {
-	if IndexOf("", "") != 0 ||
-		IndexOf("aaa", "b") != -1 ||
-		IndexOf("aabaabaa", "a") != 0 ||
-		IndexOf("", "") != 0 ||
-		IndexOf("aabaabaa", "b") != 2 ||
-		IndexOf("aabaabaa", "ab") != 1 ||
-		IndexOf("aabaabaa", "") != 0 {
-		t.Errorf("IndexOf func don't work correctly")
+func TestIndex(t *testing.T) {
+	if Index("", "") != 0 ||
+		Index("aaa", "b") != -1 ||
+		Index("aabaabaa", "a") != 0 ||
+		Index("", "") != 0 ||
+		Index("aabaabaa", "b") != 2 ||
+		Index("aabaabaa", "ab") != 1 ||
+		Index("aabaabaa", "") != 0 {
+		t.Errorf("Index func don't work correctly")
 	}
 }
 
-func TestLastIndexOf(t *testing.T) {
-	if LastIndexOf("", "") != 0 ||
-		LastIndexOf("aaa", "b") != -1 ||
-		LastIndexOf("aabaabaa", "a") != 7 ||
-		LastIndexOf("", "") != 0 ||
-		LastIndexOf("aabaabaa", "b") != 5 ||
-		LastIndexOf("aabaabaa", "ab") != 4 ||
-		LastIndexOf("aabaabaa", "") != 8 {
-		t.Errorf("LastIndexOf func don't work correctly")
+func TestIndexStartAt(t *testing.T) {
+	if IndexAt("aaa", "a", -1) != 0 ||
+		IndexAt("", "a", 0) != -1 ||
+		IndexAt("aaa", "a", 3) != -1 ||
+		IndexAt("aaa", "a", 2) != 2 ||
+		IndexAt("aaa", "b", 0) != -1 ||
+		IndexAt("abc", "b", 0) != 1 ||
+		IndexAt("abc", "b", 1) != 1 ||
+		IndexAt("abc", "b", 2) != -1 {
+		t.Errorf("IndexStartAt func don't work correctly")
+	}
+}
+
+func TestLastIndex(t *testing.T) {
+	if LastIndex("", "") != 0 ||
+		LastIndex("aaa", "b") != -1 ||
+		LastIndex("aabaabaa", "a") != 7 ||
+		LastIndex("", "") != 0 ||
+		LastIndex("aabaabaa", "b") != 5 ||
+		LastIndex("aabaabaa", "ab") != 4 ||
+		LastIndex("aabaabaa", "") != 8 {
+		t.Errorf("LastIndex func don't work correctly")
+	}
+}
+
+func TestLastIndexStartAt(t *testing.T) {
+	if LastIndexAt("aaa", "a", -1) != 2 ||
+		LastIndexAt("", "", 0) != 0 ||
+		LastIndexAt("aaa", "a", 0) != 2 ||
+		LastIndexAt("aaa", "aaaa", 0) != -1 ||
+		LastIndexAt("aaa", "b", 0) != -1 ||
+		LastIndexAt("aaa", "a", 3) != -1 ||
+		LastIndexAt("aaa", "a", 2) != 2 ||
+		LastIndexAt("aaa", "a", 1) != 2 {
+		t.Errorf("LastIndexAt func don't work correctly")
 	}
 }
 
