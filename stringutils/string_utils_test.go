@@ -207,3 +207,25 @@ func TestCapitalize(t *testing.T) {
 		t.Errorf("Capitalize func don't work correctly")
 	}
 }
+
+func TestRotate(t *testing.T) {
+	if Rotate("", 0) != "" ||
+		Rotate("", -2) != "" ||
+		Rotate("", 2) != "" ||
+		Rotate("abcdefg", 2) != "fgabcde" ||
+		Rotate("abcdefg", -2) != "cdefgab" ||
+		Rotate("abcdefg", 7) != "abcdefg" ||
+		Rotate("abcdefg", -7) != "abcdefg" ||
+		Rotate("abcdefg", 9) != "fgabcde" ||
+		Rotate("abcdefg", -9) != "cdefgab" {
+		t.Errorf("Rotate func don't work correctly")
+	}
+}
+
+func TestReverse(t *testing.T) {
+	if Reverse("") != "" ||
+		Reverse("bat") != "tab" ||
+		Reverse(" bat ") != " tab " {
+		t.Errorf("Reverse func don't work correctly")
+	}
+}

@@ -1,6 +1,7 @@
 package stringutils
 
 import (
+	"go-commons-lang/math/intutils"
 	"strings"
 	"unicode"
 )
@@ -12,12 +13,12 @@ const (
 /**
  * Checks if a string is empty ("").
  *
- * <pre>
+ * @Examples:
  * IsEmpty("")        = true
  * IsEmpty(" ")       = false
  * IsEmpty("bob")     = false
  * IsEmpty("  bob  ") = false
- * </pre>
+ *
  *
  * @param cs the string to check
  * @return {@code true} if the string is empty
@@ -30,12 +31,12 @@ func IsEmpty(cs string) bool {
 /**
  * Checks if a string is not empty (#"").
  *
- * <pre>
+ * @Examples:
  * IsNotEmpty("")        = false
  * IsNotEmpty(" ")       = true
  * IsNotEmpty("bob")     = true
  * IsNotEmpty("  bob  ") = true
- * </pre>
+ *
  *
  * @param cs the string to check
  * @return {@code true} if the string is not empty
@@ -48,12 +49,12 @@ func IsNotEmpty(cs string) bool {
 /**
  * Checks if a string is empty ("") or whitespace only.
  *
- * <pre>
+ * @Examples:
  * IsBlank("")        = true
  * IsBlank(" ")       = true
  * IsBlank("bob")     = false
  * IsBlank("  bob  ") = false
- * </pre>
+ *
  *
  * @param cs the string to check
  * @return {@code true} if the string is empty or whitespace only
@@ -74,12 +75,12 @@ func IsBlank(cs string) bool {
 /**
  * Checks if a string is not empty ("") and not whitespace only.
  *
- * <pre>
+ * @Examples:
  * IsNotBlank("")        = false
  * IsNotBlank(" ")       = false
  * IsNotBlank("bob")     = true
  * IsNotBlank("  bob  ") = true
- * </pre>
+ *
  *
  * @param cs the string to check
  * @return {@code true} if the string is empty or whitespace only
@@ -94,7 +95,7 @@ func IsNotBlank(cs string) bool {
  * A decimal point is not a Unicode digit and returns false.
  * An empty string (length()=0) will return {@code false}.
  *
- * <pre>
+ * @Examples:
  * IsNumeric("")     = false
  * IsNumeric("  ")   = false
  * IsNumeric("123")  = true
@@ -105,7 +106,7 @@ func IsNotBlank(cs string) bool {
  * IsNumeric("12.3") = false
  * IsNumeric("-123") = false
  * isNumeric("+123") = false
- * </pre>
+ *
  *
  * @param cs  the string to check
  * @return {@code true} if only contains digits
@@ -129,7 +130,7 @@ func IsNumeric(cs string) bool {
  * A decimal point is not a Unicode digit and returns false.
  * An empty string (length()=0) will return {@code false}.
  *
- * <pre>
+ * @Examples:
  * IsNumericSpace("")     = true
  * IsNumericSpace("  ")   = true
  * IsNumericSpace("123")  = true
@@ -140,7 +141,7 @@ func IsNumeric(cs string) bool {
  * IsNumericSpace("12.3") = false
  * IsNumericSpace("-123") = false
  * IsNumericSpace("+123") = false
- * </pre>
+ *
  *
  * @param cs  the string to check
  * @return {@code true} if only contains digits
@@ -160,6 +161,7 @@ func IsNumericSpace(cs string) bool {
  *
  * An empty string (length()=0) will return {@code true}.
  *
+ * @Examples:
  * IsWhiteSpace("")     = true
  * IsWhiteSpace("  ")   = true
  * IsWhiteSpace("abc")  = false
@@ -183,10 +185,10 @@ func IsWhiteSpace(cs string) bool {
 
 /**
  * Converts a String to upper case as per {@link strings#ToUpper()}.
- * <pre>
+ * @Examples:
  * UpperCase("")    = ""
  * UpperCase("aBc") = "ABC"
- * </pre>
+ *
  * @param str  the String to upper case
  * @return the upper case String
  */
@@ -197,10 +199,10 @@ func UpperCase(cs string) string {
 
 /**
  * Converts a String to lowser case as per {@link strings#ToLower()}.
- * <pre>
+ * @Examples:
  * UpperCase("")    = ""
  * UpperCase("aBc") = "abc"
- * </pre>
+ *
  * @param str  the String to upper case
  * @return the upper case String
  */
@@ -213,7 +215,7 @@ func LowerCase(cs string) string {
  * Checks if the string contains only uppercase characters.
  * An empty String (length()=0) will return {@code false}.
  *
- * <pre>
+ * @Examples:
  * IsAllUpperCase("")     = false
  * IsAllUpperCase("  ")   = false
  * IsAllUpperCase("ABC")  = true
@@ -221,7 +223,7 @@ func LowerCase(cs string) string {
  * IsAllUpperCase("A C")  = false
  * IsAllUpperCase("A1C")  = false
  * IsAllUpperCase("A/C")  = false
- * </pre>
+ *
  *
  * @param cs the string to check
  * @return {@code true} if only contains uppercase characters
@@ -244,7 +246,7 @@ func IsAllUpperCase(cs string) bool {
  *
  * An empty string (length()=0) will return {@code false}.</p>
  *
- * <pre>
+ * @Examples:
  * IsAllLowerCase("")     = false
  * IsAllLowerCase("  ")   = false
  * IsAllLowerCase("abc")  = true
@@ -252,7 +254,7 @@ func IsAllUpperCase(cs string) bool {
  * IsAllLowerCase("ab c") = false
  * IsAllLowerCase("ab1c") = false
  * IsAllLowerCase("ab/c") = false
- * </pre>
+ *
  *
  * @param cs  the CharSequence to check
  * @return {@code true} if only contains lowercase characters
@@ -275,13 +277,13 @@ func IsAllLowerCase(cs string) bool {
 /**
  * Checks if the string contains only Unicode letters.
  * An empty string (length()=0) will return {@code false}.
- * <pre>
+ * @Examples:
  * IsAlpha("")     = false
  * IsAlpha("  ")   = false
  * IsAlpha("abc")  = true
  * IsAlpha("ab2c") = false
  * IsAlpha("ab-c") = false
- * </pre>
+ *
  *
  * @param cs  the string to check
  * @return {@code true} if only contains letters
@@ -304,14 +306,14 @@ func IsAlpha(cs string) bool {
 /**
  * Checks if the string contains only Unicode letters or digits.
  *
- * <pre>
+ * @Examples:
  * IsAlphanumeric("")     = false
  * IsAlphanumeric("  ")   = false
  * IsAlphanumeric("abc")  = true
  * IsAlphanumeric("ab c") = false
  * IsAlphanumeric("ab2c") = true
  * IsAlphanumeric("ab-c") = false
- * </pre>
+ *
  *
  * @param cs  the CharSequence to check
  * @return {@code true} if only contains letters or digits,
@@ -333,10 +335,10 @@ func IsAlphanumeric(cs string) bool {
 
 /**
  * Get the string length.
- * <pre>
+ * @Examples:
  * Length(") = 0
  * Length("abc") = 3
- * </pre>
+ *
  * @param cs  the string to get length
  * @return string length
  */
@@ -347,16 +349,17 @@ func Length(cs string) int {
 
 /**
  * Get index of sub string in str string
- * <pre>
- * IndexOf("", "") 					= 0
- * IndexOf("aaa", "b") 				= -1
- * IndexOf("aabaabaa", "a") 		= 0
- * IndexOf("", "") 					= 0
- * IndexOf("aabaabaa", "b") 		= 2
- * IndexOf("aabaabaa", "ab") 		= 1
- * IndexOf("aabaabaa", "") 			= 0
- * </pre>
- *
+ * @Examples:
+ * IndexOf("", "")					= 0
+ * IndexOf("aaa", "b")				= -1
+ * IndexOf("aabaabaa", "a")			= 0
+ * IndexOf("", "")					= 0
+ * IndexOf("aabaabaa", "b")			= 2
+ * IndexOf("aabaabaa", "ab")		= 1
+ * IndexOf("aabaabaa", "")			= 0
+ * @Parameters
+ * str - the parent string
+ * sub - sub string
  * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
@@ -366,7 +369,7 @@ func Index(str, sub string) int {
 
 /**
  * Get index of @sub string in @str string start from @start index
- * <pre>
+ * @Examples:
  * IndexStartAt("", "a", 0) 		= -1
  * IndexStartAt("aaa", "a", 3) 		= -1
  * IndexStartAt("aaa", "a", 2) 		= 2
@@ -374,8 +377,11 @@ func Index(str, sub string) int {
  * IndexStartAt("abc", "b", 0) 		= 1
  * IndexStartAt("abc", "b", 1)		= 1
  * IndexStartAt("abc", "b", 2) 		= -1
- * </pre>
- * @params @str - parent string, @sub - sub string and @start index
+ *
+ * @Parameters
+ * str - the parent string
+ * sub - sub string
+ * start - start index
  * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
@@ -396,17 +402,19 @@ func IndexAt(str, sub string, start int) int {
 
 /**
  * Get last index of @sub string in @str string
- * <pre>
+ * @Examples:
  * LastIndexOf("", "")				= 0
- * LastIndexOf("aaa", "b")  		= -1
- * LastIndexOf("aabaabaa", "a") 	= 7
- * LastIndexOf("", "") 				= 0
- * LastIndexOf("aabaabaa", "b") 	= 5
- * LastIndexOf("aabaabaa", "ab") 	= 4
- * LastIndexOf("aabaabaa", "") 		= 8
- * </pre>
- * @param @str string and @sub substr to check index
- * @return the index of the last instance of substr in s, or -1 if sub is not present in str.
+ * LastIndexOf("aaa", "b")			= -1
+ * LastIndexOf("aabaabaa", "a")		= 7
+ * LastIndexOf("", "")				= 0
+ * LastIndexOf("aabaabaa", "b")		= 5
+ * LastIndexOf("aabaabaa", "ab")	= 4
+ * LastIndexOf("aabaabaa", "")		= 8
+ *
+ * @Parameters
+ * str -  the string to check
+ * sub - the sub string and @start index
+ * @return the index of the last instance of sub in s, or -1 if sub is not present in str.
  */
 
 func LastIndex(str, sub string) int {
@@ -415,17 +423,20 @@ func LastIndex(str, sub string) int {
 
 /**
  * Get last index of @sub string in @str string start from @start index
- * <pre>
+ * @Examples:
  * LastIndexAt("aaa", "a", -1) 		= 2
- * LastIndexAt("", "", 0) 			= 0
+ * LastIndexAt("", "", 0)			= 0
  * LastIndexAt("aaa", "a", 0) 		= 2
  * LastIndexAt("aaa", "aaaa", 0) 	= -1
  * LastIndexAt("aaa", "b", 0) 		= -1
  * LastIndexAt("aaa", "a", 3) 		= -1
  * LastIndexAt("aaa", "a", 2) 		= 2
  * LastIndexAt("aaa", "a", 1) 		= 2
- * </pre>
- * @params @str - parent string, @sub - sub string and @start index
+ *
+ * @Parameters
+ * str -  the string to check
+ * sub - the sub string and
+ * start - start index
  * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
@@ -446,15 +457,16 @@ func LastIndexAt(str, sub string, start int) int {
 
 /**
  * Capitalizes a String changing the first character to title case as
- * <pre>
+ * @Examples:
  * Capitalize("") = 			""
  * Capitalize(" ") = 			" "
  * Capitalize("cat") 			= "Cat"
  * Capitalize("dog cat") 		= "Dog cat"
  * Capitalize("DOG CAT") 		= "DOG CAT"
- * </pre>
- * @param the string to capitalize
- * @return the capitalized String
+ *
+ * @Parameters:
+ * cs - the string to capitalize
+ * @returns: the capitalized String
  */
 
 func Capitalize(cs string) string {
@@ -469,5 +481,61 @@ func Capitalize(cs string) string {
 		index++
 	}
 	runes[0] = unicode.ToUpper(runes[0])
+	return string(runes)
+}
+
+/**
+ * Rotate (circular shift) a String of shift characters.
+ * @Examples:
+ * Rotate("", 0)				= ""
+ * Rotate("", -2)				= ""
+ * Rotate("", 2)				= ""
+ * Rotate("abcdefg", 2)			= "fgabcde"
+ * Rotate("abcdefg", -2)		= "cdefgab"
+ * Rotate("abcdefg", 7)			= "abcdefg"
+ * Rotate("abcdefg", -7)		= "abcdefg"
+ * Rotate("abcdefg", 9)			= "fgabcde"
+ * Rotate("abcdefg", -9)		= "cdefgab"
+ *
+ * @Parameters:
+ * str - the string to rotate
+ * shift - number of time to shift (positive : right shift, negative : left shift)
+ * @returns: the rotated String, or the original String if shift == 0
+ */
+
+func Rotate(str string, shift int) string {
+	size := Length(str)
+	if size == 0 || shift == 0 || shift%size == 0 {
+		return str
+	}
+	offset := shift % size
+	offsetVal := intutils.Abs(offset)
+	if offset < 0 {
+		return str[offsetVal:size] + str[0:offsetVal]
+	} else {
+		return str[size-offsetVal:size] + str[0:size-offsetVal]
+	}
+}
+
+/**
+ * Reverses a String
+ * @Examples:
+ * Reverse("") != ""
+ * Reverse("bat") != "tab"
+ * Reverse(" bat ") != " tab "
+ *
+ * @Parameters:
+ * str - the string to reverse
+ * @returns: the reversed String
+ */
+
+func Reverse(str string) string {
+	runes := []rune(str)
+	size := len(runes)
+	for i := 0; i < size/2; i++ {
+		swap := runes[i]
+		runes[i] = runes[size-i-1]
+		runes[size-i-1] = swap
+	}
 	return string(runes)
 }
