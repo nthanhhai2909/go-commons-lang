@@ -2,7 +2,7 @@ package boolean
 
 import (
 	"go-commons-lang/errors"
-	"go-commons-lang/errors/illegal"
+	"go-commons-lang/errors/illegal/argument"
 	"testing"
 )
 
@@ -13,8 +13,8 @@ func TestIsTrueCase1(t *testing.T) {
 	if err == nil {
 		t.Errorf("IsTrue %s failed when expression is false", "case 1")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("IsTrue %s failed must return %s", "case 1", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("IsTrue %s failed must return %s", "case 1", "Error")
 	}
 
 	if err.Error() != "my message" {
@@ -28,8 +28,8 @@ func TestIsTrueCase2(t *testing.T) {
 	if err == nil {
 		t.Errorf("IsTrue %s failed when expression is false", "case 2")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("IsTrue %s failed must return %s", "case 2", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("IsTrue %s failed must return %s", "case 2", "Error")
 	}
 
 	if err.Error() != errors.DefaultIsTrueExMessage {

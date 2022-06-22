@@ -2,7 +2,7 @@ package string
 
 import (
 	"go-commons-lang/errors"
-	"go-commons-lang/errors/illegal"
+	"go-commons-lang/errors/illegal/argument"
 	"testing"
 )
 
@@ -13,8 +13,8 @@ func TestNotEmptyCase1(t *testing.T) {
 	if err == nil {
 		t.Errorf("NotEmpty %s failed when expression is false", "case 1")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("NotEmpty %s failed must return %s", "case 1", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("NotEmpty %s failed must return %s", "case 1", "Error")
 	}
 
 	if err.Error() != "my message" {
@@ -28,8 +28,8 @@ func TestNotEmptyCase2(t *testing.T) {
 	if err == nil {
 		t.Errorf("NotEmpty %s failed when expression is false", "case 2")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("NotEmpty %s failed must return %s", "case 2", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("NotEmpty %s failed must return %s", "case 2", "Error")
 	}
 
 	if err.Error() != errors.DefaultIsTrueExMessage {
@@ -51,8 +51,8 @@ func TestNotBlankCase1(t *testing.T) {
 	if err == nil {
 		t.Errorf("NotBlank %s failed when expression is false", "case 1")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("NotBlank %s failed must return %s", "case 1", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("NotBlank %s failed must return %s", "case 1", "Error")
 	}
 
 	if err.Error() != "my message" {
@@ -66,8 +66,8 @@ func TestNotBlankCase2(t *testing.T) {
 	if err == nil {
 		t.Errorf("NotBlank %s failed when expression is false", "case 2")
 	}
-	if _, ok := err.(*illegal.ArgumentError); !ok {
-		t.Errorf("NotBlank %s failed must return %s", "case 2", "ArgumentError")
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("NotBlank %s failed must return %s", "case 2", "Error")
 	}
 
 	if err.Error() != errors.DefaultIsTrueExMessage {
