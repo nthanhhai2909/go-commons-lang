@@ -173,6 +173,38 @@ func TestIndexStartAt(t *testing.T) {
 	}
 }
 
+func TestIndexIgnoreCase(t *testing.T) {
+	if IndexIgnoreCase("", "") != 0 ||
+		IndexIgnoreCase("aaa", "b") != -1 ||
+		IndexIgnoreCase("Aabaabaa", "a") != 0 ||
+		IndexIgnoreCase("", "") != 0 ||
+		IndexIgnoreCase("aabaabaa", "B") != 2 ||
+		IndexIgnoreCase("aabaabaa", "AB") != 1 ||
+		IndexIgnoreCase("AAbaaAA", "") != 0 ||
+		IndexIgnoreCase("關於數", "於") != 1 ||
+		IndexIgnoreCase("a", "aaabbbccc") != -1 {
+		t.Errorf("IndexIgnoreCase func don't work correctly")
+	}
+}
+
+func TestIndexIgnoreCaseAt(t *testing.T) {
+	if IndexIgnoreCaseAt("", "", 0) != 0 ||
+		IndexIgnoreCaseAt("", "", 1) != 0 ||
+		IndexIgnoreCaseAt("aaa", "b", 0) != -1 ||
+		IndexIgnoreCaseAt("Aabaabaa", "a", 1) != 1 ||
+		IndexIgnoreCaseAt("aabaabaa", "B", 3) != 5 ||
+		IndexIgnoreCaseAt("aabaabaa", "AB", 0) != 1 ||
+		IndexIgnoreCaseAt("AAbaaAA", "", 9) != 0 ||
+		IndexIgnoreCaseAt("關於數於", "於", 0) != 1 ||
+		IndexIgnoreCaseAt("關於數於", "於", 2) != 3 ||
+		IndexIgnoreCaseAt("關於數於", "於", 3) != 3 ||
+		IndexIgnoreCaseAt("關於數於", "於", 4) != -1 ||
+		IndexIgnoreCaseAt("a", "aaabbbccc", 0) != -1 ||
+		IndexIgnoreCaseAt("AAbaaAA", "a", -10) != 0 {
+		t.Errorf("IndexIgnoreCase func don't work correctly")
+	}
+}
+
 func TestLastIndex(t *testing.T) {
 	if LastIndex("", "") != 0 ||
 		LastIndex("aaa", "b") != -1 ||
@@ -217,7 +249,8 @@ func TestRotate(t *testing.T) {
 		Rotate("abcdefg", 7) != "abcdefg" ||
 		Rotate("abcdefg", -7) != "abcdefg" ||
 		Rotate("abcdefg", 9) != "fgabcde" ||
-		Rotate("abcdefg", -9) != "cdefgab" {
+		Rotate("abcdefg", -9) != "cdefgab" ||
+		Rotate("關於數", 1) != "數關於" {
 		t.Errorf("Rotate func don't work correctly")
 	}
 }
@@ -225,7 +258,8 @@ func TestRotate(t *testing.T) {
 func TestReverse(t *testing.T) {
 	if Reverse("") != "" ||
 		Reverse("bat") != "tab" ||
-		Reverse(" bat ") != " tab " {
+		Reverse(" bat ") != " tab " ||
+		Reverse("關於數") != "數於關" {
 		t.Errorf("Reverse func don't work correctly")
 	}
 }

@@ -7,7 +7,8 @@ import (
 )
 
 const (
-	EMPTY = ""
+	EMPTY         = ""
+	IndexNotFound = -1
 )
 
 /**
@@ -401,6 +402,57 @@ func IndexAt(str, sub string, start int) int {
 }
 
 /**
+ * Case in-sensitive find of the first index within a string
+ * @Parameters
+ * str - the parent string
+ * sub - sub string
+ * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ */
+
+func IndexIgnoreCase(str, sub string) int {
+	return IndexIgnoreCaseAt(str, sub, 0)
+}
+
+func IndexIgnoreCaseAt(str, sub string, start int) int {
+	strRunes := []rune(str)
+	subRunes := []rune(sub)
+	strSize := len(strRunes)
+	subSize := len(subRunes)
+
+	if start < 0 {
+		start = 0
+	}
+
+	if subSize == 0 {
+		return 0
+	}
+
+	if strSize == 0 || subSize+start > strSize {
+		return IndexNotFound
+	}
+
+	index := IndexNotFound
+	for i := 0; i < strSize-start; i++ {
+		if unicode.ToUpper(strRunes[start+i]) == unicode.ToUpper(subRunes[0]) {
+			index = start + i
+			success := true
+			for j := i; j < (i + subSize); j++ {
+				if unicode.ToUpper(strRunes[start+j]) != unicode.ToUpper(subRunes[j-i]) {
+					success = false
+					break
+				}
+			}
+			if success {
+				return index
+			} else {
+				index = IndexNotFound
+			}
+		}
+	}
+	return index
+}
+
+/**
  * Get last index of @sub string in @str string
  * @Examples:
  * LastIndexOf("", "")				= 0
@@ -504,16 +556,17 @@ func Capitalize(cs string) string {
  */
 
 func Rotate(str string, shift int) string {
-	size := Length(str)
+	runes := []rune(str)
+	size := len(runes)
 	if size == 0 || shift == 0 || shift%size == 0 {
 		return str
 	}
 	offset := shift % size
 	offsetVal := intutils.Abs(offset)
 	if offset < 0 {
-		return str[offsetVal:size] + str[0:offsetVal]
+		return string(runes[offsetVal:size]) + string(runes[0:offsetVal])
 	} else {
-		return str[size-offsetVal:size] + str[0:size-offsetVal]
+		return string(runes[size-offsetVal:size]) + string(runes[0:size-offsetVal])
 	}
 }
 
