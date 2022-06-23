@@ -43,3 +43,41 @@ func TestIsTrueCase3(t *testing.T) {
 		t.Errorf("IsTrue failed to validate expression")
 	}
 }
+
+func TestIsFalseCase1(t *testing.T) {
+	message := "my message"
+	err := IsFalse(true, message)
+
+	if err == nil {
+		t.Errorf("IsFalse %s failed when expression is true", "case 1")
+	}
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("IsFalse %s failed must return %s", "case 1", "Error")
+	}
+
+	if err.Error() != "my message" {
+		t.Errorf("IsFalse %s failed to return message: %s", "case 1", message)
+	}
+}
+
+func TestIsFalseCase2(t *testing.T) {
+	err := IsFalse(true, "")
+
+	if err == nil {
+		t.Errorf("IsFalse %s failed when expression is true", "case 2")
+	}
+	if _, ok := err.(*argument.Error); !ok {
+		t.Errorf("IsFalse %s failed must return %s", "case 2", "Error")
+	}
+
+	if err.Error() != errors.DefaultIsTrueExMessage {
+		t.Errorf("IsFalse %s failed to return default message %s", "case 2", errors.DefaultIsTrueExMessage)
+	}
+}
+
+func TestIsFalseCase3(t *testing.T) {
+	err := IsTrue(true, "")
+	if err != nil {
+		t.Errorf("IsFalse failed to validate expression")
+	}
+}

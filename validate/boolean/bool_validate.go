@@ -10,3 +10,10 @@ func IsTrue(expression bool, message string) error {
 	}
 	return nil
 }
+
+func IsFalse(expression bool, message string) error {
+	if expression {
+		return argument.Create(message)
+	}
+	return nil
+}
