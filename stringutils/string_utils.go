@@ -20,52 +20,49 @@ const (
  * IsEmpty("bob")     = false
  * IsEmpty("  bob  ") = false
  *
- *
- * @param cs the string to check
- * @return {@code true} if the string is empty
+ * @parameters the string to check
+ * @returns {@code true} if the string is empty
  */
 
-func IsEmpty(cs string) bool {
-	return cs == ""
+func IsEmpty(str string) bool {
+	return str == ""
 }
 
 /**
  * Checks if a string is not empty (#"").
  *
  * @Examples:
- * IsNotEmpty("")        = false
- * IsNotEmpty(" ")       = true
- * IsNotEmpty("bob")     = true
+ * IsNotEmpty("") = false
+ * IsNotEmpty(" ") = true
+ * IsNotEmpty("bob") = true
  * IsNotEmpty("  bob  ") = true
  *
- *
- * @param cs the string to check
- * @return {@code true} if the string is not empty
+ * @parameters the string to check
+ * @returns {@code true} if the string is not empty
  */
 
-func IsNotEmpty(cs string) bool {
-	return !IsEmpty(cs)
+func IsNotEmpty(str string) bool {
+	return !IsEmpty(str)
 }
 
 /**
  * Checks if a string is empty ("") or whitespace only.
  *
  * @Examples:
- * IsBlank("")        = true
- * IsBlank(" ")       = true
- * IsBlank("bob")     = false
+ * IsBlank("") = true
+ * IsBlank(" ") = true
+ * IsBlank("bob") = false
  * IsBlank("  bob  ") = false
  *
- *
- * @param cs the string to check
- * @return {@code true} if the string is empty or whitespace only
+ * @parameters the string to check
+ * @returns {@code true} if the string is empty or whitespace only
  */
 
-func IsBlank(cs string) bool {
-	if IsEmpty(cs) {
+func IsBlank(str string) bool {
+	if IsEmpty(str) {
 		return true
 	}
-	for _, s := range cs {
+	for _, s := range str {
 		if !unicode.IsSpace(s) {
 			return false
 		}
@@ -77,18 +74,18 @@ func IsBlank(cs string) bool {
  * Checks if a string is not empty ("") and not whitespace only.
  *
  * @Examples:
- * IsNotBlank("")        = false
- * IsNotBlank(" ")       = false
- * IsNotBlank("bob")     = true
+ * IsNotBlank("") = false
+ * IsNotBlank(" ") = false
+ * IsNotBlank("bob") = true
  * IsNotBlank("  bob  ") = true
  *
  *
- * @param cs the string to check
- * @return {@code true} if the string is empty or whitespace only
+ * @parameters the string to check
+ * @returns {@code true} if the string is empty or whitespace only
  */
 
-func IsNotBlank(cs string) bool {
-	return !IsBlank(cs)
+func IsNotBlank(str string) bool {
+	return !IsBlank(str)
 }
 
 /**
@@ -97,10 +94,10 @@ func IsNotBlank(cs string) bool {
  * An empty string (length()=0) will return {@code false}.
  *
  * @Examples:
- * IsNumeric("")     = false
- * IsNumeric("  ")   = false
- * IsNumeric("123")  = true
- * IsNumeric("\u0967\u0968\u0969")  = true
+ * IsNumeric("") = false
+ * IsNumeric("  ") = false
+ * IsNumeric("123") = true
+ * IsNumeric("\u0967\u0968\u0969") = true
  * IsNumeric("12 3") = false
  * IsNumeric("ab2c") = false
  * IsNumeric("12-3") = false
@@ -109,16 +106,16 @@ func IsNotBlank(cs string) bool {
  * isNumeric("+123") = false
  *
  *
- * @param cs  the string to check
- * @return {@code true} if only contains digits
+ * @parameters the string to check
+ * @returns {@code true} if only contains digits
  */
 
-func IsNumeric(cs string) bool {
-	if IsEmpty(cs) {
+func IsNumeric(str string) bool {
+	if IsEmpty(str) {
 		return false
 	}
 
-	for _, s := range cs {
+	for _, s := range str {
 		if !unicode.IsDigit(s) {
 			return false
 		}
@@ -144,12 +141,12 @@ func IsNumeric(cs string) bool {
  * IsNumericSpace("+123") = false
  *
  *
- * @param cs  the string to check
- * @return {@code true} if only contains digits
+ * @parameters the string to check
+ * @returns {@code true} if only contains digits or whitespace
  */
 
-func IsNumericSpace(cs string) bool {
-	for _, s := range cs {
+func IsNumericSpace(str string) bool {
+	for _, s := range str {
 		if !unicode.IsSpace(s) && !unicode.IsDigit(s) {
 			return false
 		}
@@ -168,10 +165,9 @@ func IsNumericSpace(cs string) bool {
  * IsWhiteSpace("abc")  = false
  * IsWhiteSpace("ab2c") = false
  * IsWhiteSpace("ab-c") = false
- * </pre>
  *
- * @param cs  the CharSequence to check
- * @return {@code true} if only contains whitespace
+ * @parameters the string to check
+ * @returns {@code true} if only contains whitespace
  */
 
 func IsWhiteSpace(cs string) bool {
@@ -187,11 +183,11 @@ func IsWhiteSpace(cs string) bool {
 /**
  * Converts a String to upper case as per {@link strings#ToUpper()}.
  * @Examples:
- * UpperCase("")    = ""
+ * UpperCase("") = ""
  * UpperCase("aBc") = "ABC"
  *
- * @param str  the String to upper case
- * @return the upper case String
+ * @parameters the String to upper case
+ * @returns the upper case String
  */
 
 func UpperCase(cs string) string {
@@ -199,13 +195,13 @@ func UpperCase(cs string) string {
 }
 
 /**
- * Converts a String to lowser case as per {@link strings#ToLower()}.
+ * Converts a String to lower case as per {@link strings#ToLower()}.
  * @Examples:
- * UpperCase("")    = ""
+ * UpperCase("") = ""
  * UpperCase("aBc") = "abc"
  *
- * @param str  the String to upper case
- * @return the upper case String
+ * @parameters the String to upper case
+ * @returns the upper case String
  */
 
 func LowerCase(cs string) string {
@@ -217,16 +213,15 @@ func LowerCase(cs string) string {
  * An empty String (length()=0) will return {@code false}.
  *
  * @Examples:
- * IsAllUpperCase("")     = false
- * IsAllUpperCase("  ")   = false
- * IsAllUpperCase("ABC")  = true
- * IsAllUpperCase("aBC")  = false
- * IsAllUpperCase("A C")  = false
- * IsAllUpperCase("A1C")  = false
- * IsAllUpperCase("A/C")  = false
+ * IsAllUpperCase("") = false
+ * IsAllUpperCase("  ") = false
+ * IsAllUpperCase("ABC") = true
+ * IsAllUpperCase("aBC") = false
+ * IsAllUpperCase("A C") = false
+ * IsAllUpperCase("A1C") = false
+ * IsAllUpperCase("A/C") = false
  *
- *
- * @param cs the string to check
+ * @parameters the string to check
  * @return {@code true} if only contains uppercase characters
  */
 
@@ -244,7 +239,6 @@ func IsAllUpperCase(cs string) bool {
 
 /**
  * Checks if the string contains only lowercase characters
- *
  * An empty string (length()=0) will return {@code false}.</p>
  *
  * @Examples:
@@ -256,9 +250,8 @@ func IsAllUpperCase(cs string) bool {
  * IsAllLowerCase("ab1c") = false
  * IsAllLowerCase("ab/c") = false
  *
- *
- * @param cs  the CharSequence to check
- * @return {@code true} if only contains lowercase characters
+ * @parameters the CharSequence to check
+ * @returns {@code true} if only contains lowercase characters
  */
 
 func IsAllLowerCase(cs string) bool {
@@ -285,9 +278,8 @@ func IsAllLowerCase(cs string) bool {
  * IsAlpha("ab2c") = false
  * IsAlpha("ab-c") = false
  *
- *
- * @param cs  the string to check
- * @return {@code true} if only contains letters
+ * @parameters the string to check
+ * @returns {@code true} if only contains letters
  */
 
 func IsAlpha(cs string) bool {
@@ -316,8 +308,8 @@ func IsAlpha(cs string) bool {
  * IsAlphanumeric("ab-c") = false
  *
  *
- * @param cs  the CharSequence to check
- * @return {@code true} if only contains letters or digits,
+ * @parameters the string to check
+ * @returns {@code true} if only contains letters or digits,
  */
 
 func IsAlphanumeric(cs string) bool {
@@ -340,8 +332,8 @@ func IsAlphanumeric(cs string) bool {
  * Length(") = 0
  * Length("abc") = 3
  *
- * @param cs  the string to get length
- * @return string length
+ * @parameters the string to get length
+ * @returns string length
  */
 
 func Length(cs string) int {
@@ -361,7 +353,7 @@ func Length(cs string) int {
  * @Parameters
  * str - the parent string
  * sub - sub string
- * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
 func Index(str, sub string) int {
@@ -383,7 +375,7 @@ func Index(str, sub string) int {
  * str - the parent string
  * sub - sub string
  * start - start index
- * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
 func IndexAt(str, sub string, start int) int {
@@ -403,15 +395,48 @@ func IndexAt(str, sub string, start int) int {
 
 /**
  * Case in-sensitive find of the first index within a string
+ *
+ * @examples
+ * IndexIgnoreCase("", "") = 0
+ * IndexIgnoreCase("aaa", "b") = -1
+ * IndexIgnoreCase("Aabaabaa", "a") = 0
+ * IndexIgnoreCase("", "") = 0
+ * IndexIgnoreCase("aabaabaa", "B") = 2
+ * IndexIgnoreCase("aabaabaa", "AB") = 1
+ * IndexIgnoreCase("AAbaaAA", "") = 0
+ * IndexIgnoreCase("關於數", "於") = 1
+ * IndexIgnoreCase("a", "aaabbbccc") = -1
+ *
  * @Parameters
  * str - the parent string
  * sub - sub string
- * @return the index of the first instance of sub in str, or -1 if sub is not present in str.
+ * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
  */
 
 func IndexIgnoreCase(str, sub string) int {
 	return IndexIgnoreCaseAt(str, sub, 0)
 }
+
+/**
+ * Case in-sensitive find of the first index within a string
+ * The search process starts from @start index
+ *
+ * @examples
+ * IndexIgnoreCase("", "") = 0
+ * IndexIgnoreCase("aaa", "b") = -1
+ * IndexIgnoreCase("Aabaabaa", "a") = 0
+ * IndexIgnoreCase("", "") = 0
+ * IndexIgnoreCase("aabaabaa", "B") = 2
+ * IndexIgnoreCase("aabaabaa", "AB") = 1
+ * IndexIgnoreCase("AAbaaAA", "") = 0
+ * IndexIgnoreCase("關於數", "於") = 1
+ * IndexIgnoreCase("a", "aaabbbccc") = -1
+ *
+ * @Parameters
+ * str - the parent string
+ * sub - sub string
+ * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
+ */
 
 func IndexIgnoreCaseAt(str, sub string, start int) int {
 	strRunes := []rune(str)
@@ -593,17 +618,89 @@ func Reverse(str string) string {
 	return string(runes)
 }
 
+/**
+ * Check a string to see if it starts with @prefix string
+ *
+ * @Examples:
+ * StartsWith("aaa", "") = true
+ * StartsWith("", "") = true
+ * StartsWith("", "abc") = false
+ * StartsWith("abc", "d") = false
+ * StartsWith("abc", "abcd") = false
+ * StartsWith("ABCDEF", "abc") = false
+ * StartsWith("ABCDEF", "A") = true
+ *
+ * @Parameters:
+ * str - the string to check
+ * prefix - the prefix string
+ * @returns: {@code true} if the string starts with prefix
+ */
+
 func StartsWith(str, prefix string) bool {
 	return strings.HasPrefix(str, prefix)
 }
+
+/**
+ * Case in-sensitive Check a string to see if it starts with @prefix string
+ *
+ * @Examples:
+ * StartsWithIgnoreCase("aaa", "") = true
+ * StartsWithIgnoreCase("", "") = true
+ * StartsWithIgnoreCase("", "abc") = false
+ * StartsWithIgnoreCase("abc", "d") = false
+ * StartsWithIgnoreCase("abc", "abcd") = false
+ * StartsWithIgnoreCase("ABCDEF", "abc") = true
+ * StartsWithIgnoreCase("ABCDEF", "ABC") = true
+ *
+ * @Parameters:
+ * str - the string to check
+ * prefix - the prefix string
+ * @returns: {@code true} if the string starts with prefix
+ */
 
 func StartsWithIgnoreCase(str, prefix string) bool {
 	return strings.HasPrefix(strings.ToUpper(str), strings.ToUpper(prefix))
 }
 
+/**
+ * Check a string to see if it ends with @suffix string
+ *
+ * @Examples:
+ * EndsWith("aaa", "") = true
+ * EndsWith("", "") = true
+ * EndsWith("", "abc") = false
+ * EndsWith("abc", "d") = false
+ * EndsWith("abc", "abcd") = false
+ * EndsWith("ABCDEF", "EF") = true
+ *
+ * @Parameters:
+ * str - the string to check
+ * suffix - the suffix string
+ * @returns: {@code true} if the string ends with prefix
+ */
+
 func EndsWith(str, suffix string) bool {
 	return strings.HasSuffix(str, suffix)
 }
+
+/**
+ * Case in-sensitive Check a string to see if it ends with @suffix string
+ *
+ * @Examples:
+ * EndsWithIgnoreCase("aaa", "") = true
+ * EndsWithIgnoreCase("", "") = true
+ * EndsWithIgnoreCase("", "abc") = false
+ * EndsWithIgnoreCase("abc", "d") = false
+ * EndsWithIgnoreCase("abc", "abcd") = false
+ * EndsWithIgnoreCase("ABCDEF", "EF") = true
+ * EndsWithIgnoreCase("ABCDEF", "ef") = true
+ * EndsWithIgnoreCase("abcdef", "EF") = true
+ *
+ * @Parameters:
+ * str - the string to check
+ * suffix - the suffix string
+ * @returns: {@code true} if the string ends with prefix
+ */
 
 func EndsWithIgnoreCase(str, suffix string) bool {
 	return strings.HasSuffix(strings.ToUpper(str), strings.ToUpper(suffix))
