@@ -201,7 +201,7 @@ func TestIndexIgnoreCaseAt(t *testing.T) {
 		IndexIgnoreCaseAt("關於數於", "於", 4) != -1 ||
 		IndexIgnoreCaseAt("a", "aaabbbccc", 0) != -1 ||
 		IndexIgnoreCaseAt("AAbaaAA", "a", -10) != 0 {
-		t.Errorf("IndexIgnoreCase func don't work correctly")
+		t.Errorf("IndexIgnoreCaseAt func don't work correctly")
 	}
 }
 
@@ -261,5 +261,53 @@ func TestReverse(t *testing.T) {
 		Reverse(" bat ") != " tab " ||
 		Reverse("關於數") != "數於關" {
 		t.Errorf("Reverse func don't work correctly")
+	}
+}
+
+func TestStartsWith(t *testing.T) {
+	if !StartsWith("aaa", "") ||
+		!StartsWith("", "") ||
+		StartsWith("", "abc") ||
+		StartsWith("abc", "d") ||
+		StartsWith("abc", "abcd") ||
+		StartsWith("ABCDEF", "abc") ||
+		!StartsWith("ABCDEF", "A") {
+		t.Errorf("StartsWith func don't work correctly")
+	}
+}
+
+func TestStartsWithIgnoreCase(t *testing.T) {
+	if !StartsWithIgnoreCase("aaa", "") ||
+		!StartsWithIgnoreCase("", "") ||
+		StartsWithIgnoreCase("", "abc") ||
+		StartsWithIgnoreCase("abc", "d") ||
+		StartsWithIgnoreCase("abc", "abcd") ||
+		!StartsWithIgnoreCase("ABCDEF", "abc") ||
+		!StartsWithIgnoreCase("ABCDEF", "ABC") {
+		t.Errorf("StartsWithIgnoreCase func don't work correctly")
+	}
+}
+
+func TestEndsWith(t *testing.T) {
+	if !EndsWith("aaa", "") ||
+		!EndsWith("", "") ||
+		EndsWith("", "abc") ||
+		EndsWith("abc", "d") ||
+		EndsWith("abc", "abcd") ||
+		!EndsWith("ABCDEF", "EF") {
+		t.Errorf("EndsWith func don't work correctly")
+	}
+}
+
+func TestEndsWithIgnoreCase(t *testing.T) {
+	if !EndsWithIgnoreCase("aaa", "") ||
+		!EndsWithIgnoreCase("", "") ||
+		EndsWithIgnoreCase("", "abc") ||
+		EndsWithIgnoreCase("abc", "d") ||
+		EndsWithIgnoreCase("abc", "abcd") ||
+		!EndsWithIgnoreCase("ABCDEF", "EF") ||
+		!EndsWithIgnoreCase("ABCDEF", "ef") ||
+		!EndsWithIgnoreCase("abcdef", "EF") {
+		t.Errorf("TestEndsWithIgnoreCase func don't work correctly")
 	}
 }

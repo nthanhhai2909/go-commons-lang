@@ -592,3 +592,19 @@ func Reverse(str string) string {
 	}
 	return string(runes)
 }
+
+func StartsWith(str, prefix string) bool {
+	return strings.HasPrefix(str, prefix)
+}
+
+func StartsWithIgnoreCase(str, prefix string) bool {
+	return strings.HasPrefix(strings.ToUpper(str), strings.ToUpper(prefix))
+}
+
+func EndsWith(str, suffix string) bool {
+	return strings.HasSuffix(str, suffix)
+}
+
+func EndsWithIgnoreCase(str, suffix string) bool {
+	return strings.HasSuffix(strings.ToUpper(str), strings.ToUpper(suffix))
+}
