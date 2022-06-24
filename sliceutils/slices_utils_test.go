@@ -100,6 +100,13 @@ func TestMergeCollectionSortedCase4(t *testing.T) {
 	}
 }
 
+func TestSingletonSlice(t *testing.T) {
+	slice := SingletonSlice(1)
+	if len(slice) != 1 || slice[0] != 1 {
+		t.Errorf("SingletonSlice failed")
+	}
+}
+
 func studentData() (student1, student2 []student) {
 	student1 = make([]student, 3)
 	student2 = make([]student, 3)
