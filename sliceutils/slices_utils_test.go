@@ -18,7 +18,7 @@ func TestIsEmpty(t *testing.T) {
 		!IsEmpty(strCollection) ||
 		!IsEmpty(fCollection) ||
 		IsEmpty(notEmptyCollection) {
-		t.Errorf("IsEmpty failed")
+		t.Errorf("IsEmpty func failed")
 	}
 }
 
@@ -31,7 +31,7 @@ func TestIsNotEmpty(t *testing.T) {
 		IsNotEmpty(strCollection) ||
 		IsNotEmpty(fCollection) ||
 		!IsNotEmpty(notEmptyCollection) {
-		t.Errorf("IsNotEmpty failed")
+		t.Errorf("IsNotEmpty func failed")
 	}
 }
 
@@ -43,7 +43,7 @@ func TestMergeCollection(t *testing.T) {
 	if len(result) != 6 ||
 		result[0] != 1 ||
 		result[5] != 6 {
-		t.Errorf("MergeSlices failed")
+		t.Errorf("MergeSlices func failed")
 	}
 }
 
@@ -55,7 +55,7 @@ func TestMergeCollectionSortedCase1(t *testing.T) {
 	if len(result) != 6 ||
 		result[0] != 1 ||
 		result[5] != 6 {
-		t.Errorf("MergeSlicesSorted failed")
+		t.Errorf("MergeSlicesSorted func failed")
 	}
 }
 
@@ -69,7 +69,7 @@ func TestMergeCollectionSortedCase2(t *testing.T) {
 		sortedAscByName[0].name != "a" && sortedAscByName[0].age != 24 ||
 		sortedAscByName[1].name != "a" && sortedAscByName[1].age != 34 ||
 		sortedAscByName[5].name != "f" && sortedAscByName[1].age != 21 {
-		t.Errorf("MergeSlicesSorted failed in case sort asc by name")
+		t.Errorf("MergeSlicesSorted func failed in case sort asc by name")
 	}
 }
 
@@ -83,7 +83,7 @@ func TestMergeCollectionSortedCase3(t *testing.T) {
 		sortedAscByAge[0].name != "c" && sortedAscByAge[0].age != 19 ||
 		sortedAscByAge[1].name != "f" && sortedAscByAge[1].age != 24 ||
 		sortedAscByAge[5].name != "b" && sortedAscByAge[5].age != 54 {
-		t.Errorf("MergeSlicesSorted failed in case sort desc by name")
+		t.Errorf("MergeSlicesSorted func failed in case sort desc by name")
 	}
 }
 
@@ -96,14 +96,14 @@ func TestMergeCollectionSortedCase4(t *testing.T) {
 	if len(sortedDescByAge) != 6 ||
 		sortedDescByAge[5].name != "c" && sortedDescByAge[5].age != 19 ||
 		sortedDescByAge[0].name != "b" && sortedDescByAge[0].age != 54 {
-		t.Errorf("MergeSlicesSorted failed in case sort desc by name")
+		t.Errorf("MergeSlicesSorted func failed in case sort desc by name")
 	}
 }
 
 func TestSingletonSlice(t *testing.T) {
 	slice := SingletonSlice(1)
 	if len(slice) != 1 || slice[0] != 1 {
-		t.Errorf("SingletonSlice failed")
+		t.Errorf("SingletonSlice func failed")
 	}
 }
 
@@ -113,7 +113,31 @@ func TestReverse(t *testing.T) {
 	if slice[0] != 3 ||
 		slice[1] != 2 ||
 		slice[2] != 1 {
-		t.Errorf("Reverse failed")
+		t.Errorf("Reverse func failed")
+	}
+}
+
+func TestFirst(t *testing.T) {
+	_, ok1 := First([]int{})
+	if ok1 {
+		t.Errorf("First func failed in case empty slice")
+	}
+
+	item, ok2 := First([]int{1, 2, 3})
+	if !ok2 || item != 1 {
+		t.Errorf("First func failed to get first element")
+	}
+}
+
+func TestLast(t *testing.T) {
+	_, ok1 := Last([]int{})
+	if ok1 {
+		t.Errorf("Last func failed in case empty slice")
+	}
+
+	item, ok2 := First([]int{1, 2, 3})
+	if !ok2 || item != 3 {
+		t.Errorf("Last func failed to get last element")
 	}
 }
 

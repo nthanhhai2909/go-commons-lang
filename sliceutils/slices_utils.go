@@ -56,3 +56,17 @@ func Reverse[T any](slice []T) {
 		slice[size-i-1] = swap
 	}
 }
+
+func First[T any](slice []T) (interface{}, bool) {
+	if IsEmpty(slice) {
+		return nil, false
+	}
+	return slice[0], true
+}
+
+func Last[T any](slice []T) (interface{}, bool) {
+	if IsEmpty(slice) {
+		return nil, false
+	}
+	return slice[len(slice)-1], true
+}
