@@ -47,3 +47,12 @@ func SingletonSlice[T any](item T) []T {
 	slice[0] = item
 	return slice
 }
+
+func Reverse[T any](slice []T) {
+	size := len(slice)
+	for i := 0; i < size/2; i++ {
+		swap := slice[i]
+		slice[i] = slice[size-i-1]
+		slice[size-i-1] = swap
+	}
+}

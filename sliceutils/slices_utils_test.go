@@ -107,6 +107,16 @@ func TestSingletonSlice(t *testing.T) {
 	}
 }
 
+func TestReverse(t *testing.T) {
+	slice := []int{1, 2, 3}
+	Reverse(slice)
+	if slice[0] != 3 ||
+		slice[1] != 2 ||
+		slice[2] != 1 {
+		t.Errorf("Reverse failed")
+	}
+}
+
 func studentData() (student1, student2 []student) {
 	student1 = make([]student, 3)
 	student2 = make([]student, 3)
