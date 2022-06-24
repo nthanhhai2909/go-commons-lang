@@ -100,15 +100,6 @@ func TestMergeCollectionSortedCase4(t *testing.T) {
 	}
 }
 
-//func TestAddAll(t *testing.T) {
-//	student1, student2 := studentData()
-//	check := AddAll(&student1, &student2)
-//	fmt.Println(len(student1))
-//	if !check || len(student1) != 6 {
-//		t.Errorf("AllAll failed")
-//	}
-//}
-
 func studentData() (student1, student2 []student) {
 	student1 = make([]student, 3)
 	student2 = make([]student, 3)

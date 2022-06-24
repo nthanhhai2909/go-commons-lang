@@ -37,12 +37,3 @@ func MergeSlicesSorted[T any](sortFunc func(a, b T) bool, collections ...[]T) []
 	})
 	return result
 }
-
-//func AddAll[T any](slices, added *[]T) bool {
-//	if IsEmpty(*added) {
-//		return false
-//	}
-//	res := append(*slices, *added...)
-//	slices = &res
-//	return true
-//}
