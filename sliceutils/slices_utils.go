@@ -9,6 +9,16 @@ const (
 	indexNotFound   = -1
 )
 
+/**
+ * Check if a slice is empty or not.
+ * @examples:
+ * IsEmpty(make([]int, 0)) = true
+ * IsEmpty([]int{1, 2, 3})) = false
+ *
+ * @parameters the slice to check
+ * @returns {@code true} if the string is empty
+ */
+
 func IsEmpty[T any](slice []T) bool {
 	if len(slice) == 0 {
 		return true
@@ -16,9 +26,28 @@ func IsEmpty[T any](slice []T) bool {
 	return false
 }
 
+/**
+ * Check if a slice is not empty.
+ * @examples:
+ * IsNotEmpty(make([]int, 0)) = false
+ * IsNotEmpty([]int{1, 2, 3})) = true
+ *
+ * @parameters the slice to check
+ * @returns {@code true} if the string is not empty
+ */
+
 func IsNotEmpty[T any](slice []T) bool {
 	return !IsEmpty(slice)
 }
+
+/**
+ * Merge all slice into a slice
+ * @examples:
+ * MergeSlices([]int{1, 2, 3}, []int{4, 5, 6}) = []int{1, 2, 3, 4, 5, 6}
+ *
+ * @parameters a list of slice
+ * @returns Slice which have all element of all slice
+ */
 
 func MergeSlices[T any](slices ...[]T) []T {
 	result := make([]T, 0, DefaultCapacity)
@@ -29,6 +58,15 @@ func MergeSlices[T any](slices ...[]T) []T {
 	}
 	return result
 }
+
+/**
+ * Merge all slice into a slice and then sort
+ * @examples:
+ * MergeSlicesSorted([]int{1, 3, 6}, []int{2, 5, 4}}) = []int{1, 2, 3, 4, 5, 6}
+ *
+ * @parameters a list of slice
+ * @returns A sorted slice which have all element of all slice
+ */
 
 func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
 	result := make([]T, 0, DefaultCapacity)

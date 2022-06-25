@@ -14,7 +14,7 @@ const (
 /**
  * Checks if a string is empty ("").
  *
- * @Examples:
+ * @examples:
  * IsEmpty("")        = true
  * IsEmpty(" ")       = false
  * IsEmpty("bob")     = false
@@ -31,7 +31,7 @@ func IsEmpty(str string) bool {
 /**
  * Checks if a string is not empty (#"").
  *
- * @Examples:
+ * @examples:
  * IsNotEmpty("") = false
  * IsNotEmpty(" ") = true
  * IsNotEmpty("bob") = true
@@ -48,7 +48,7 @@ func IsNotEmpty(str string) bool {
 /**
  * Checks if a string is empty ("") or whitespace only.
  *
- * @Examples:
+ * @examples:
  * IsBlank("") = true
  * IsBlank(" ") = true
  * IsBlank("bob") = false
@@ -73,7 +73,7 @@ func IsBlank(str string) bool {
 /**
  * Checks if a string is not empty ("") and not whitespace only.
  *
- * @Examples:
+ * @examples:
  * IsNotBlank("") = false
  * IsNotBlank(" ") = false
  * IsNotBlank("bob") = true
@@ -93,7 +93,7 @@ func IsNotBlank(str string) bool {
  * A decimal point is not a Unicode digit and returns false.
  * An empty string (length()=0) will return {@code false}.
  *
- * @Examples:
+ * @examples:
  * IsNumeric("") = false
  * IsNumeric("  ") = false
  * IsNumeric("123") = true
@@ -128,7 +128,7 @@ func IsNumeric(str string) bool {
  * A decimal point is not a Unicode digit and returns false.
  * An empty string (length()=0) will return {@code false}.
  *
- * @Examples:
+ * @examples:
  * IsNumericSpace("")     = true
  * IsNumericSpace("  ")   = true
  * IsNumericSpace("123")  = true
@@ -159,7 +159,7 @@ func IsNumericSpace(str string) bool {
  *
  * An empty string (length()=0) will return {@code true}.
  *
- * @Examples:
+ * @examples:
  * IsWhiteSpace("")     = true
  * IsWhiteSpace("  ")   = true
  * IsWhiteSpace("abc")  = false
@@ -182,7 +182,7 @@ func IsWhiteSpace(cs string) bool {
 
 /**
  * Converts a String to upper case as per {@link strings#ToUpper()}.
- * @Examples:
+ * @examples:
  * UpperCase("") = ""
  * UpperCase("aBc") = "ABC"
  *
@@ -196,7 +196,7 @@ func UpperCase(cs string) string {
 
 /**
  * Converts a String to lower case as per {@link strings#ToLower()}.
- * @Examples:
+ * @examples:
  * UpperCase("") = ""
  * UpperCase("aBc") = "abc"
  *
@@ -212,7 +212,7 @@ func LowerCase(cs string) string {
  * Checks if the string contains only uppercase characters.
  * An empty String (length()=0) will return {@code false}.
  *
- * @Examples:
+ * @examples:
  * IsAllUpperCase("") = false
  * IsAllUpperCase("  ") = false
  * IsAllUpperCase("ABC") = true
@@ -241,7 +241,7 @@ func IsAllUpperCase(cs string) bool {
  * Checks if the string contains only lowercase characters
  * An empty string (length()=0) will return {@code false}.</p>
  *
- * @Examples:
+ * @examples:
  * IsAllLowerCase("")     = false
  * IsAllLowerCase("  ")   = false
  * IsAllLowerCase("abc")  = true
@@ -271,7 +271,7 @@ func IsAllLowerCase(cs string) bool {
 /**
  * Checks if the string contains only Unicode letters.
  * An empty string (length()=0) will return {@code false}.
- * @Examples:
+ * @examples:
  * IsAlpha("")     = false
  * IsAlpha("  ")   = false
  * IsAlpha("abc")  = true
@@ -299,7 +299,7 @@ func IsAlpha(cs string) bool {
 /**
  * Checks if the string contains only Unicode letters or digits.
  *
- * @Examples:
+ * @examples:
  * IsAlphanumeric("")     = false
  * IsAlphanumeric("  ")   = false
  * IsAlphanumeric("abc")  = true
@@ -328,7 +328,7 @@ func IsAlphanumeric(cs string) bool {
 
 /**
  * Get the string length.
- * @Examples:
+ * @examples:
  * Length(") = 0
  * Length("abc") = 3
  *
@@ -342,7 +342,7 @@ func Length(cs string) int {
 
 /**
  * Get index of sub string in str string
- * @Examples:
+ * @examples:
  * IndexOf("", "")					= 0
  * IndexOf("aaa", "b")				= -1
  * IndexOf("aabaabaa", "a")			= 0
@@ -362,7 +362,7 @@ func Index(str, sub string) int {
 
 /**
  * Get index of @sub string in @str string start from @start index
- * @Examples:
+ * @examples:
  * IndexStartAt("", "a", 0) 		= -1
  * IndexStartAt("aaa", "a", 3) 		= -1
  * IndexStartAt("aaa", "a", 2) 		= 2
@@ -479,7 +479,7 @@ func IndexIgnoreCaseAt(str, sub string, start int) int {
 
 /**
  * Get last index of @sub string in @str string
- * @Examples:
+ * @examples:
  * LastIndexOf("", "")				= 0
  * LastIndexOf("aaa", "b")			= -1
  * LastIndexOf("aabaabaa", "a")		= 7
@@ -500,7 +500,7 @@ func LastIndex(str, sub string) int {
 
 /**
  * Get last index of @sub string in @str string start from @start index
- * @Examples:
+ * @examples:
  * LastIndexAt("aaa", "a", -1) 		= 2
  * LastIndexAt("", "", 0)			= 0
  * LastIndexAt("aaa", "a", 0) 		= 2
@@ -534,7 +534,7 @@ func LastIndexAt(str, sub string, start int) int {
 
 /**
  * Capitalizes a String changing the first character to title case as
- * @Examples:
+ * @examples:
  * Capitalize("") = 			""
  * Capitalize(" ") = 			" "
  * Capitalize("cat") 			= "Cat"
@@ -563,7 +563,7 @@ func Capitalize(cs string) string {
 
 /**
  * Rotate (circular shift) a String of shift characters.
- * @Examples:
+ * @examples:
  * Rotate("", 0)				= ""
  * Rotate("", -2)				= ""
  * Rotate("", 2)				= ""
@@ -597,7 +597,7 @@ func Rotate(str string, shift int) string {
 
 /**
  * Reverses a String
- * @Examples:
+ * @examples:
  * Reverse("") != ""
  * Reverse("bat") != "tab"
  * Reverse(" bat ") != " tab "
@@ -621,7 +621,7 @@ func Reverse(str string) string {
 /**
  * Check a string to see if it starts with @prefix string
  *
- * @Examples:
+ * @examples:
  * StartsWith("aaa", "") = true
  * StartsWith("", "") = true
  * StartsWith("", "abc") = false
@@ -643,7 +643,7 @@ func StartsWith(str, prefix string) bool {
 /**
  * Case in-sensitive Check a string to see if it starts with @prefix string
  *
- * @Examples:
+ * @examples:
  * StartsWithIgnoreCase("aaa", "") = true
  * StartsWithIgnoreCase("", "") = true
  * StartsWithIgnoreCase("", "abc") = false
@@ -665,7 +665,7 @@ func StartsWithIgnoreCase(str, prefix string) bool {
 /**
  * Check a string to see if it ends with @suffix string
  *
- * @Examples:
+ * @examples:
  * EndsWith("aaa", "") = true
  * EndsWith("", "") = true
  * EndsWith("", "abc") = false
@@ -686,7 +686,7 @@ func EndsWith(str, suffix string) bool {
 /**
  * Case in-sensitive Check a string to see if it ends with @suffix string
  *
- * @Examples:
+ * @examples:
  * EndsWithIgnoreCase("aaa", "") = true
  * EndsWithIgnoreCase("", "") = true
  * EndsWithIgnoreCase("", "abc") = false
