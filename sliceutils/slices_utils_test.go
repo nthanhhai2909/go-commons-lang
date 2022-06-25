@@ -256,6 +256,66 @@ func TestNotContains(t *testing.T) {
 	}
 }
 
+func TestIntersection(t *testing.T) {
+	strSlice1 := []string{"a", "b", "bb", "a", "b"}
+	strSlice2 := []string{"a", "c", "bb", "d"}
+	strInter := Intersection(strSlice1, strSlice2)
+	if len(strInter) != 2 ||
+		NotContains(strInter, "bb") ||
+		NotContains(strInter, "a") {
+		t.Errorf("Intersection func failed at test case 1")
+	}
+
+	studentSlice1 := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+	studentSlice2 := []student{{name: "a", age: 10}, {name: "b", age: 18}, {name: "c", age: 20}}
+	studentInter := Intersection(studentSlice1, studentSlice2)
+	if len(studentInter) != 1 ||
+		studentInter[0].name != "b" ||
+		studentInter[0].age != 18 {
+		t.Errorf("Intersection func failed at test case 2")
+	}
+}
+
+func TestUnion(t *testing.T) {
+	strSlice1 := []string{"a", "b", "bb", "a", "b"}
+	strSlice2 := []string{"a", "c", "bb", "d"}
+	strUnion := Union(strSlice1, strSlice2)
+	expectedStrUnion := []string{"a", "b", "bb", "a", "b", "c", "d"}
+	if len(strUnion) != len(expectedStrUnion) {
+		for index := 0; index < len(strUnion); index++ {
+			if strUnion[index] != expectedStrUnion[index] {
+				t.Errorf("Union func failed at test case 1")
+			}
+		}
+	}
+
+	studentSlice1 := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+	studentSlice2 := []student{{name: "a", age: 10}, {name: "b", age: 18}, {name: "c", age: 20}}
+	studentUnion := Union(studentSlice1, studentSlice2)
+	expectedStudentUnion := []student{{"a", 17}, {"b", 18}, {"c", 19}, {"a", 10}, {"c", 20}}
+	if len(studentUnion) != len(expectedStudentUnion) {
+		for index := 0; index < len(strUnion); index++ {
+			if studentUnion[index] != expectedStudentUnion[index] {
+				t.Errorf("Union func failed at test case 2")
+			}
+		}
+	}
+}
+
+func TestDifference(t *testing.T) {
+	strSlice1 := []string{"a", "b", "bb", "a", "b"}
+	strSlice2 := []string{"a", "c", "bb", "d"}
+	result := Difference(strSlice1, strSlice2)
+	expectedStr := []string{"c"}
+	if len(result) != len(expectedStr) {
+		for index := 0; index < len(expectedStr); index++ {
+			if result[index] != expectedStr[index] {
+				t.Errorf("Union func failed at test case 1")
+			}
+		}
+	}
+}
+
 func studentData() (student1, student2 []student) {
 	student1 = make([]student, 3)
 	student2 = make([]student, 3)

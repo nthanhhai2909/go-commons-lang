@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	DefaultCapacity = 10
+	defaultCapacity = 10
 	indexNotFound   = -1
 )
 
@@ -50,7 +50,7 @@ func IsNotEmpty[T any](slice []T) bool {
  */
 
 func MergeSlices[T any](slices ...[]T) []T {
-	result := make([]T, 0, DefaultCapacity)
+	result := make([]T, 0, defaultCapacity)
 	for _, coll := range slices {
 		for _, item := range coll {
 			result = append(result, item)
@@ -69,7 +69,7 @@ func MergeSlices[T any](slices ...[]T) []T {
  */
 
 func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
-	result := make([]T, 0, DefaultCapacity)
+	result := make([]T, 0, defaultCapacity)
 	for _, coll := range slices {
 		for _, item := range coll {
 			result = append(result, item)
@@ -88,7 +88,7 @@ func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
  */
 
 func SingletonSlice[T any](item T) []T {
-	slice := make([]T, 1, DefaultCapacity)
+	slice := make([]T, 1, defaultCapacity)
 	slice[0] = item
 	return slice
 }
@@ -214,4 +214,68 @@ func Contains[T comparable](slice []T, item T) bool {
 
 func NotContains[T comparable](slice []T, item T) bool {
 	return !Contains(slice, item)
+}
+
+func Intersection[T comparable](a, b []T) []T {
+	if IsEmpty(a) || IsEmpty(b) {
+		return []T{}
+	}
+
+	m := make(map[T]bool)
+	result := make([]T, 0, defaultCapacity)
+
+	for _, item := range a {
+		m[item] = false
+	}
+
+	for _, item := range b {
+		if _, ok := m[item]; ok {
+			m[item] = true
+		}
+	}
+
+	for key, val := range m {
+		if val {
+			result = append(result, key)
+		}
+	}
+	return result
+}
+
+func Union[T comparable](a, b []T) []T {
+	m := make(map[T]bool)
+	result := make([]T, 0, defaultCapacity)
+
+	for _, item := range a {
+		m[item] = false
+		result = append(result, item)
+	}
+
+	for _, item := range b {
+		if _, ok := m[item]; !ok {
+			result = append(result, item)
+		}
+	}
+	return result
+}
+
+func Difference[T comparable](a, b []T) []T {
+	m := make(map[T]bool)
+	for _, item := range a {
+		m[item] = true
+	}
+
+	for _, item := range b {
+		if _, ok := m[item]; ok {
+			m[item] = false
+		}
+	}
+	result := make([]T, 0, defaultCapacity)
+	for key, val := range m {
+		if val {
+			result = append(result, key)
+		}
+	}
+
+	return result
 }
