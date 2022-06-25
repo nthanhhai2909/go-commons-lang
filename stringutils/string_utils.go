@@ -350,7 +350,7 @@ func Length(cs string) int {
  * IndexOf("aabaabaa", "b")			= 2
  * IndexOf("aabaabaa", "ab")		= 1
  * IndexOf("aabaabaa", "")			= 0
- * @Parameters
+ * @parameters
  * str - the parent string
  * sub - sub string
  * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
@@ -371,7 +371,7 @@ func Index(str, sub string) int {
  * IndexStartAt("abc", "b", 1)		= 1
  * IndexStartAt("abc", "b", 2) 		= -1
  *
- * @Parameters
+ * @parameters
  * str - the parent string
  * sub - sub string
  * start - start index
@@ -407,7 +407,7 @@ func IndexAt(str, sub string, start int) int {
  * IndexIgnoreCase("關於數", "於") = 1
  * IndexIgnoreCase("a", "aaabbbccc") = -1
  *
- * @Parameters
+ * @parameters
  * str - the parent string
  * sub - sub string
  * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
@@ -432,7 +432,7 @@ func IndexIgnoreCase(str, sub string) int {
  * IndexIgnoreCase("關於數", "於") = 1
  * IndexIgnoreCase("a", "aaabbbccc") = -1
  *
- * @Parameters
+ * @parameters
  * str - the parent string
  * sub - sub string
  * @returns the index of the first instance of sub in str, or -1 if sub is not present in str.
@@ -488,7 +488,7 @@ func IndexIgnoreCaseAt(str, sub string, start int) int {
  * LastIndexOf("aabaabaa", "ab")	= 4
  * LastIndexOf("aabaabaa", "")		= 8
  *
- * @Parameters
+ * @parameters
  * str -  the string to check
  * sub - the sub string and @start index
  * @return the index of the last instance of sub in s, or -1 if sub is not present in str.
@@ -510,7 +510,7 @@ func LastIndex(str, sub string) int {
  * LastIndexAt("aaa", "a", 2) 		= 2
  * LastIndexAt("aaa", "a", 1) 		= 2
  *
- * @Parameters
+ * @parameters
  * str -  the string to check
  * sub - the sub string and
  * start - start index
@@ -541,7 +541,7 @@ func LastIndexAt(str, sub string, start int) int {
  * Capitalize("dog cat") 		= "Dog cat"
  * Capitalize("DOG CAT") 		= "DOG CAT"
  *
- * @Parameters:
+ * @parameters:
  * cs - the string to capitalize
  * @returns: the capitalized String
  */
@@ -574,7 +574,7 @@ func Capitalize(cs string) string {
  * Rotate("abcdefg", 9)			= "fgabcde"
  * Rotate("abcdefg", -9)		= "cdefgab"
  *
- * @Parameters:
+ * @parameters:
  * str - the string to rotate
  * shift - number of time to shift (positive : right shift, negative : left shift)
  * @returns: the rotated String, or the original String if shift == 0
@@ -602,7 +602,7 @@ func Rotate(str string, shift int) string {
  * Reverse("bat") != "tab"
  * Reverse(" bat ") != " tab "
  *
- * @Parameters:
+ * @parameters:
  * str - the string to reverse
  * @returns: the reversed String
  */
@@ -630,7 +630,7 @@ func Reverse(str string) string {
  * StartsWith("ABCDEF", "abc") = false
  * StartsWith("ABCDEF", "A") = true
  *
- * @Parameters:
+ * @parameters:
  * str - the string to check
  * prefix - the prefix string
  * @returns: {@code true} if the string starts with prefix
@@ -652,7 +652,7 @@ func StartsWith(str, prefix string) bool {
  * StartsWithIgnoreCase("ABCDEF", "abc") = true
  * StartsWithIgnoreCase("ABCDEF", "ABC") = true
  *
- * @Parameters:
+ * @parameters:
  * str - the string to check
  * prefix - the prefix string
  * @returns: {@code true} if the string starts with prefix
@@ -673,7 +673,7 @@ func StartsWithIgnoreCase(str, prefix string) bool {
  * EndsWith("abc", "abcd") = false
  * EndsWith("ABCDEF", "EF") = true
  *
- * @Parameters:
+ * @parameters:
  * str - the string to check
  * suffix - the suffix string
  * @returns: {@code true} if the string ends with prefix
@@ -696,7 +696,7 @@ func EndsWith(str, suffix string) bool {
  * EndsWithIgnoreCase("ABCDEF", "ef") = true
  * EndsWithIgnoreCase("abcdef", "EF") = true
  *
- * @Parameters:
+ * @parameters:
  * str - the string to check
  * suffix - the suffix string
  * @returns: {@code true} if the string ends with prefix

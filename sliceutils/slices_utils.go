@@ -81,11 +81,26 @@ func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
 	return result
 }
 
+/**
+ * Create new slice which contains only one element
+ * @parameters an item to create slice
+ * @returns A slice which contains only one element
+ */
+
 func SingletonSlice[T any](item T) []T {
 	slice := make([]T, 1, DefaultCapacity)
 	slice[0] = item
 	return slice
 }
+
+/**
+ * Reverses the order of the given slice.
+ * @examples:
+ * Reverse([]int{1, 2, 3}) = []int{3, 2, 1}
+ *
+ * @parameters slice need to reverse
+ * @returns A reversed slice
+ */
 
 func Reverse[T any](slice []T) {
 	size := len(slice)
@@ -96,6 +111,15 @@ func Reverse[T any](slice []T) {
 	}
 }
 
+/**
+ * Get the first element from the given slice
+ * @examples:
+ * First([]int{}) = nil
+ * First([]int{1, 2, 3}) = 1
+ * @parameters A slice need to get the first element
+ * @returns the first element or nil
+ */
+
 func First[T any](slice []T) interface{} {
 	if IsEmpty(slice) {
 		return nil
@@ -103,12 +127,30 @@ func First[T any](slice []T) interface{} {
 	return slice[0]
 }
 
+/**
+ * Get the last element from the given slice
+ * @examples:
+ * Last([]int{}) = nil
+ * Last([]int{1, 2, 3}) = 3
+ *
+ * @parameters A slice need to get the first element
+ * @returns the last element or nil
+ */
+
 func Last[T any](slice []T) interface{} {
 	if IsEmpty(slice) {
 		return nil
 	}
 	return slice[len(slice)-1]
 }
+
+/**
+ * Returns a new slice with only unique elements from the given slice
+ * @examples:
+ * Unique([]int{1, 2, 3, 2, 4}) = []int{1, 2, 3, 4}
+ *
+ * @returns unique slice
+ */
 
 func Unique[T comparable](slice []T) []T {
 	if IsEmpty(slice) {
@@ -126,6 +168,16 @@ func Unique[T comparable](slice []T) []T {
 	return result
 }
 
+/**
+ * Get index of an @item from given slice
+ * @examples:
+ * IndexOf([]int{1, 2, 3, 2, 4}, 1) = 0
+ * IndexOf([]int{1, 2, 3, 2, 4}, 10) = -1
+ * IndexOf([]int{}, 1) = -1
+ *
+ * @returns index of item
+ */
+
 func IndexOf[T comparable](slice []T, item T) int {
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == item {
@@ -136,9 +188,29 @@ func IndexOf[T comparable](slice []T, item T) int {
 
 }
 
+/**
+ * Check an item is in given slice
+ * @examples:
+ * Contains([]int{1, 2, 3, 2, 4}, 1) = true
+ * Contains([]int{1, 2, 3, 2, 4}, 10) = false
+ * Contains([]int{}, 1) = false
+ *
+ * @returns  {@code true} if item is in slice
+ */
+
 func Contains[T comparable](slice []T, item T) bool {
 	return IndexOf(slice, item) != indexNotFound
 }
+
+/**
+ * Check an item is not in given slice
+ * @examples:
+ * NotContains([]int{1, 2, 3, 2, 4}, 1) = false
+ * NotContains([]int{1, 2, 3, 2, 4}, 10) = true
+ * NotContains([]int{}, 1) = true
+ *
+ * @returns  {@code true} if item is not in slice
+ */
 
 func NotContains[T comparable](slice []T, item T) bool {
 	return !Contains(slice, item)
