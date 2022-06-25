@@ -1,6 +1,7 @@
 package sliceutils
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -154,6 +155,104 @@ func TestLastCase2(t *testing.T) {
 	lastStudent := Last(students)
 	if lastStudent == nil || lastStudent.(student).name != "b" || lastStudent.(student).age != 18 {
 		t.Errorf("Last func failed to get first element")
+	}
+}
+
+func TestUniqueCase1(t *testing.T) {
+	intSlice := []int{1, 2, 3, 2, 4}
+	result := Unique(intSlice)
+
+	if len(result) != 4 ||
+		result[0] != 1 ||
+		result[1] != 2 ||
+		result[2] != 3 ||
+		result[3] != 4 {
+		t.Errorf("Unique func failed at test case 1")
+	}
+}
+
+func TestUniqueCase2(t *testing.T) {
+	strSlice := []string{"a", "b", "bb", "a", "b"}
+	result := Unique(strSlice)
+
+	if len(result) != 3 ||
+		result[0] != "a" ||
+		result[1] != "b" ||
+		result[2] != "bb" {
+		t.Errorf("Unique func failed at test case 1")
+	}
+}
+
+func TestUniqueCase3(t *testing.T) {
+	students := []student{{name: "a", age: 17}, {name: "b", age: 17}, {name: "a", age: 17}}
+	result := Unique(students)
+	fmt.Println(result)
+	if len(result) != 2 ||
+		result[0].name != "a" || result[0].age != 17 || result[1].name != "b" || result[1].age != 17 {
+		t.Errorf("Unique func failed at test casse 2")
+	}
+}
+
+func TestUniqueCase4(t *testing.T) {
+	var students []student
+	result := Unique(students)
+
+	if len(result) != 0 {
+		t.Errorf("Unique func failed at test casse 3")
+	}
+}
+
+func TestIndexOf(t *testing.T) {
+	strSlice := []string{"a", "b", "bb", "a", "b"}
+	if IndexOf(strSlice, "bb") != 2 || IndexOf(strSlice, "ddd") != -1 {
+		t.Errorf("IndexOf func failed at test case 1")
+	}
+
+	intSlice := []int{1, 2, 3, 4, 5}
+	if IndexOf(intSlice, 4) != 3 || IndexOf(intSlice, 10) != -1 {
+		t.Errorf("IndexOf func failed at test case 2")
+	}
+
+	students := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+
+	if IndexOf(students, student{name: "c", age: 19}) != 2 || IndexOf(students, student{name: "c", age: 30}) != -1 {
+		t.Errorf("IndexOf func failed at test case 3")
+	}
+}
+
+func TestContains(t *testing.T) {
+	strSlice := []string{"a", "b", "bb", "a", "b"}
+	if !Contains(strSlice, "bb") || Contains(strSlice, "ddd") {
+		t.Errorf("Contains func failed at test case 1")
+	}
+
+	intSlice := []int{1, 2, 3, 4, 5}
+	if !Contains(intSlice, 4) || Contains(intSlice, 10) {
+		t.Errorf("Contains func failed at test case 2")
+	}
+
+	students := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+
+	if !Contains(students, student{name: "c", age: 19}) || Contains(students, student{name: "c", age: 30}) {
+		t.Errorf("Contains func failed at test case 3")
+	}
+}
+
+func TestNotContains(t *testing.T) {
+	strSlice := []string{"a", "b", "bb", "a", "b"}
+	if NotContains(strSlice, "bb") || !NotContains(strSlice, "ddd") {
+		t.Errorf("NotContains func failed at test case 1")
+	}
+
+	intSlice := []int{1, 2, 3, 4, 5}
+	if NotContains(intSlice, 4) || !NotContains(intSlice, 10) {
+		t.Errorf("NotContains func failed at test case 2")
+	}
+
+	students := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+
+	if NotContains(students, student{name: "c", age: 19}) || !NotContains(students, student{name: "c", age: 30}) {
+		t.Errorf("NotContains func failed at test case 3")
 	}
 }
 

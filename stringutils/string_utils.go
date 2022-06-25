@@ -8,7 +8,7 @@ import (
 
 const (
 	EMPTY         = ""
-	IndexNotFound = -1
+	indexNotFound = -1
 )
 
 /**
@@ -453,10 +453,10 @@ func IndexIgnoreCaseAt(str, sub string, start int) int {
 	}
 
 	if strSize == 0 || subSize+start > strSize {
-		return IndexNotFound
+		return indexNotFound
 	}
 
-	index := IndexNotFound
+	index := indexNotFound
 	for i := 0; i < strSize-start; i++ {
 		if unicode.ToUpper(strRunes[start+i]) == unicode.ToUpper(subRunes[0]) {
 			index = start + i
@@ -470,7 +470,7 @@ func IndexIgnoreCaseAt(str, sub string, start int) int {
 			if success {
 				return index
 			} else {
-				index = IndexNotFound
+				index = indexNotFound
 			}
 		}
 	}

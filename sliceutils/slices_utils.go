@@ -6,6 +6,7 @@ import (
 
 const (
 	DefaultCapacity = 10
+	indexNotFound   = -1
 )
 
 func IsEmpty[T any](slice []T) bool {
@@ -69,4 +70,38 @@ func Last[T any](slice []T) interface{} {
 		return nil
 	}
 	return slice[len(slice)-1]
+}
+
+func Unique[T comparable](slice []T) []T {
+	if IsEmpty(slice) {
+		return slice
+	}
+
+	result := make([]T, 0, len(slice))
+	m := make(map[T]interface{})
+	for _, item := range slice {
+		if _, ok := m[item]; !ok {
+			result = append(result, item)
+			m[item] = nil
+		}
+	}
+	return result
+}
+
+func IndexOf[T comparable](slice []T, item T) int {
+	for i := 0; i < len(slice); i++ {
+		if slice[i] == item {
+			return i
+		}
+	}
+	return indexNotFound
+
+}
+
+func Contains[T comparable](slice []T, item T) bool {
+	return IndexOf(slice, item) != indexNotFound
+}
+
+func NotContains[T comparable](slice []T, item T) bool {
+	return !Contains(slice, item)
 }
