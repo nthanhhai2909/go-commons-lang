@@ -57,16 +57,16 @@ func Reverse[T any](slice []T) {
 	}
 }
 
-func First[T any](slice []T) (interface{}, bool) {
+func First[T any](slice []T) interface{} {
 	if IsEmpty(slice) {
-		return nil, false
+		return nil
 	}
-	return slice[0], true
+	return slice[0]
 }
 
-func Last[T any](slice []T) (interface{}, bool) {
+func Last[T any](slice []T) interface{} {
 	if IsEmpty(slice) {
-		return nil, false
+		return nil
 	}
-	return slice[len(slice)-1], true
+	return slice[len(slice)-1]
 }

@@ -117,27 +117,43 @@ func TestReverse(t *testing.T) {
 	}
 }
 
-func TestFirst(t *testing.T) {
-	_, ok1 := First([]int{})
-	if ok1 {
+func TestFirstCase1(t *testing.T) {
+	item1 := First([]int{})
+	if item1 != nil {
 		t.Errorf("First func failed in case empty slice")
 	}
 
-	item, ok2 := First([]int{1, 2, 3})
-	if !ok2 || item != 1 {
+	item2 := First([]int{1, 2, 3})
+	if item2 == nil || item2.(int) != 1 {
 		t.Errorf("First func failed to get first element")
 	}
 }
 
-func TestLast(t *testing.T) {
-	_, ok1 := Last([]int{})
-	if ok1 {
+func TestFirstCase2(t *testing.T) {
+	students := []student{{name: "a", age: 17}}
+	firstStudent := First(students)
+	if firstStudent == nil || firstStudent.(student).name != "a" || firstStudent.(student).age != 17 {
+		t.Errorf("First func failed to get first element")
+	}
+}
+
+func TestLastCase1(t *testing.T) {
+	item1 := Last([]int{})
+	if item1 != nil {
 		t.Errorf("Last func failed in case empty slice")
 	}
 
-	item, ok2 := First([]int{1, 2, 3})
-	if !ok2 || item != 3 {
+	item2 := Last([]int{1, 2, 3})
+	if item2 == nil || item2.(int) != 3 {
 		t.Errorf("Last func failed to get last element")
+	}
+}
+
+func TestLastCase2(t *testing.T) {
+	students := []student{{name: "a", age: 17}, {name: "b", age: 18}}
+	lastStudent := Last(students)
+	if lastStudent == nil || lastStudent.(student).name != "b" || lastStudent.(student).age != 18 {
+		t.Errorf("Last func failed to get first element")
 	}
 }
 
