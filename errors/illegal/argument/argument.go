@@ -1,8 +1,8 @@
 package argument
 
 import (
-	"go-commons-lang/errors"
 	"go-commons-lang/stringutils"
+	"go-commons-lang/validate"
 )
 
 /**
@@ -22,7 +22,7 @@ func New(message string) error {
 }
 
 func Default() error {
-	return &Error{errors.DefaultIsTrueExMessage}
+	return &Error{validate.DefaultIsTrueExMessage}
 }
 
 func Create(message string) error {

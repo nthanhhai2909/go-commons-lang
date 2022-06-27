@@ -1,8 +1,8 @@
 package boolean
 
 import (
-	"go-commons-lang/errors"
 	"go-commons-lang/errors/illegal/argument"
+	"go-commons-lang/validate"
 	"testing"
 )
 
@@ -32,8 +32,8 @@ func TestIsTrueCase2(t *testing.T) {
 		t.Errorf("IsTrue %s failed must return %s", "case 2", "Error")
 	}
 
-	if err.Error() != errors.DefaultIsTrueExMessage {
-		t.Errorf("IsTrue %s failed to return default message %s", "case 2", errors.DefaultIsTrueExMessage)
+	if err.Error() != validate.DefaultIsTrueExMessage {
+		t.Errorf("IsTrue %s failed to return default message %s", "case 2", validate.DefaultIsTrueExMessage)
 	}
 }
 
@@ -70,8 +70,8 @@ func TestIsFalseCase2(t *testing.T) {
 		t.Errorf("IsFalse %s failed must return %s", "case 2", "Error")
 	}
 
-	if err.Error() != errors.DefaultIsTrueExMessage {
-		t.Errorf("IsFalse %s failed to return default message %s", "case 2", errors.DefaultIsTrueExMessage)
+	if err.Error() != validate.DefaultIsTrueExMessage {
+		t.Errorf("IsFalse %s failed to return default message %s", "case 2", validate.DefaultIsTrueExMessage)
 	}
 }
 
