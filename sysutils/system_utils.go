@@ -5,6 +5,10 @@ import (
 	"os/user"
 )
 
+const (
+//PathSeparator = os.PathSeparator
+)
+
 func GetUserInformation() *user.User {
 	usr, err := user.Current()
 	if err != nil {

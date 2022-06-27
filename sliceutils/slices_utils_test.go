@@ -360,7 +360,7 @@ func TestFind(t *testing.T) {
 		return item.(student).age == 17
 	})
 
-	if item1 == nil || item1.(student).age == 17 || item1.(student).name == "a" {
+	if item1 == nil || item1.(student).age != 17 || item1.(student).name != "a" {
 		t.Errorf("Find func failed at test case 1")
 	}
 
