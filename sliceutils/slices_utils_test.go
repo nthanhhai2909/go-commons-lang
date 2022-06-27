@@ -334,6 +334,77 @@ func TestDifference(t *testing.T) {
 	}
 }
 
+func TestIsEqual(t *testing.T) {
+	intSlice1 := []int{1, 2, 3}
+	intSlice2 := []int{1, 2, 3}
+	intSlice3 := []int{1, 2, 4}
+	if !IsEqual(intSlice1, intSlice1) ||
+		!IsEqual(intSlice1, intSlice2) ||
+		IsEqual(intSlice1, intSlice3) {
+		t.Errorf("IsEqual func failed at test case 1")
+	}
+	studentSlice1 := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+	studentSlice2 := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+	studentSlice3 := []student{{name: "a", age: 10}, {name: "b", age: 18}, {name: "c", age: 20}}
+
+	if !IsEqual(studentSlice1, studentSlice1) ||
+		!IsEqual(studentSlice1, studentSlice2) ||
+		IsEqual(studentSlice1, studentSlice3) {
+		t.Errorf("IsEqual func failed at test case 2")
+	}
+}
+
+func TestFind(t *testing.T) {
+	studentSlice := []student{{name: "a", age: 17}, {name: "b", age: 18}, {name: "c", age: 19}}
+	item1 := Find(studentSlice, func(item interface{}) bool {
+		return item.(student).age == 17
+	})
+
+	if item1 == nil || item1.(student).age == 17 || item1.(student).name == "a" {
+		t.Errorf("Find func failed at test case 1")
+	}
+
+	item2 := Find(studentSlice, func(item interface{}) bool {
+		return item.(student).name == "d"
+	})
+	if item2 != nil {
+		t.Errorf("Find func failed at test case 2")
+	}
+}
+
+func TestCountMatches(t *testing.T) {
+	if CountMatches([]int{1, 2, 3, 4, 1}, func(item interface{}) bool { return item.(int) == 1 }) != 2 {
+		t.Errorf("CountMatches func failed at test case 1")
+	}
+	studentSlice := []student{{name: "a", age: 17}, {name: "b", age: 17}, {name: "c", age: 19}}
+	if CountMatches(studentSlice, func(item interface{}) bool {
+		return item.(student).age == 17
+	}) != 2 {
+		t.Errorf("CountMatches func failed at test case 2")
+	}
+
+	if CountMatches([]int{}, func(item interface{}) bool { return item.(int) == 1 }) != 0 {
+		t.Errorf("CountMatches func failed at test case 3")
+	}
+}
+
+func TestRemoveAll(t *testing.T) {
+	intSlice := []int{1, 1, 2, 3, 4, 5, 6}
+	intRemove := []int{1, 2, 5}
+	intRemoved := RemoveAll(intSlice, intRemove)
+	if len(intRemove) != 3 || intRemoved[0] != 3 || intRemoved[1] != 4 || intRemoved[2] != 6 {
+		t.Errorf("RemoveAll func failed at test case 1")
+	}
+
+	studentSlice := []student{{name: "a", age: 17}, {name: "b", age: 17}, {name: "c", age: 19}}
+	studentRemove := []student{{name: "a", age: 17}}
+	studentRemoved := RemoveAll(studentSlice, studentRemove)
+	if len(studentRemoved) != 2 || studentRemoved[0].name != "b" || studentRemoved[0].age != 17 ||
+		studentRemoved[1].name != "c" || studentRemoved[1].age != 19 {
+		t.Errorf("RemoveAll func failed at test case 2")
+	}
+}
+
 func studentData() (student1, student2 []student) {
 	student1 = make([]student, 3)
 	student2 = make([]student, 3)

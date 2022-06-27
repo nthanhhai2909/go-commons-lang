@@ -311,3 +311,106 @@ func Difference[T comparable](a, b []T) []T {
 
 	return result
 }
+
+/**
+ * Check if two slices are equal
+ * @examples:
+ * IsEqual([]int{1, 2, 3}, []int{1, 2, 3}) = true
+ * IsEqual([]int{1, 2}, []int{1, 3}) = false
+ *
+ * @parameters two slice to get difference data
+ * @returns {@code true} if the string is empty
+ */
+
+func IsEqual[T comparable](slice1, slice2 []T) bool {
+	size1 := len(slice1)
+	size2 := len(slice2)
+	if size1 != size2 {
+		return false
+	}
+	for i := 0; i < size1; i++ {
+		if slice1[i] != slice2[i] {
+			return false
+		}
+	}
+	return true
+}
+
+/**
+ * Returns the first element match @predicate
+ * @examples:
+ * Find([]int{1, 2, 3}, item == 1) = 1
+ * Find([]int{1, 2}, item == 3) = nil
+ *
+ * @parameters
+ * slice - given slice data
+ * predicate - the checker
+ * @returns {@code true} if the string is empty
+ */
+
+func Find[T any](slice []T, predicate types.Predicate) interface{} {
+	size := len(slice)
+	if size == 0 {
+		return nil
+	}
+
+	for _, item := range slice {
+		if predicate(item) {
+			return item
+		}
+	}
+
+	return nil
+}
+
+/**
+ * Count all elements matched to @predicate
+ * @examples:
+ * CountMatches([]int{1, 2, 3, 1}, item == 1) = 2
+ * CountMatches([]int{1, 2}, item == 3) = 0
+ *
+ * @parameters
+ * slice - given slice data
+ * predicate - the checker
+ * @returns number of matched item
+ */
+
+func CountMatches[T any](slice []T, predicate types.Predicate) int {
+	size := len(slice)
+	if size == 0 {
+		return 0
+	}
+	matches := 0
+	for _, item := range slice {
+		if predicate(item) {
+			matches++
+		}
+	}
+
+	return matches
+}
+
+/**
+ * Remove all elements from given @slice which contains in @remove slice
+ * @examples:
+ * RemoveAll([]int{1, 2, 3, 1}, []int{1) = []int{2, 3}
+ *
+ * @parameters
+ * slice - given slice data
+ * predicate - the checker
+ * @returns removed slice
+ */
+
+func RemoveAll[T comparable](slice []T, remove []T) []T {
+	if IsEmpty(slice) {
+		return []T{}
+	}
+	removed := make([]T, 0, defaultCapacity)
+	for _, item := range slice {
+		if NotContains(remove, item) {
+			removed = append(removed, item)
+		}
+	}
+
+	return removed
+}
