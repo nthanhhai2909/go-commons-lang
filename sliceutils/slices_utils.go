@@ -150,6 +150,7 @@ func Last[T any](slice []T) interface{} {
  * @examples:
  * Unique([]int{1, 2, 3, 2, 4}) = []int{1, 2, 3, 4}
  *
+ * @parameters A slice
  * @returns unique slice
  */
 
@@ -176,6 +177,9 @@ func Unique[T comparable](slice []T) []T {
  * IndexOf([]int{1, 2, 3, 2, 4}, 10) = -1
  * IndexOf([]int{}, 1) = -1
  *
+ * @parameters
+ * slice - a slice contains data
+ * item - need to check index
  * @returns index of item
  */
 
@@ -196,6 +200,9 @@ func IndexOf[T comparable](slice []T, item T) int {
  * Contains([]int{1, 2, 3, 2, 4}, 10) = false
  * Contains([]int{}, 1) = false
  *
+ * @parameters
+ * slice - a slice contains data
+ * item - need to check contains or not
  * @returns  {@code true} if item is in slice
  */
 
@@ -210,12 +217,22 @@ func Contains[T comparable](slice []T, item T) bool {
  * NotContains([]int{1, 2, 3, 2, 4}, 10) = true
  * NotContains([]int{}, 1) = true
  *
+ * @parameters
+ * slice - a slice contains data
+ * item - need to check if not contains
  * @returns  {@code true} if item is not in slice
  */
 
 func NotContains[T comparable](slice []T, item T) bool {
 	return !Contains(slice, item)
 }
+
+/**
+ * Returns a slice} containing the intersection of the given slices
+ *
+ * @parameters two slice to get intersection data
+ * @returns intersection slice
+ */
 
 func Intersection[T comparable](a, b []T) []T {
 	if IsEmpty(a) || IsEmpty(b) {
@@ -243,6 +260,13 @@ func Intersection[T comparable](a, b []T) []T {
 	return result
 }
 
+/**
+ * Returns a slice containing the union of the given slices
+ *
+ * @parameters two slice to get union data
+ * @returns union slice
+ */
+
 func Union[T comparable](a, b []T) []T {
 	m := make(map[T]bool)
 	result := make([]T, 0, defaultCapacity)
@@ -259,6 +283,13 @@ func Union[T comparable](a, b []T) []T {
 	}
 	return result
 }
+
+/**
+ * Returns a slice containing the difference of the given slices
+ *
+ * @parameters two slice to get difference data
+ * @returns difference slice
+ */
 
 func Difference[T comparable](a, b []T) []T {
 	m := make(map[T]bool)
