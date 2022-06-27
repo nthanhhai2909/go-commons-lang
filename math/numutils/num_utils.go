@@ -1,4 +1,4 @@
-package intutils
+package numutils
 
 import "go-commons-lang/types"
 

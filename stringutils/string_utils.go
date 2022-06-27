@@ -1,7 +1,7 @@
 package stringutils
 
 import (
-	"go-commons-lang/math/intutils"
+	"go-commons-lang/math/numutils"
 	"strings"
 	"unicode"
 )
@@ -587,7 +587,7 @@ func Rotate(str string, shift int) string {
 		return str
 	}
 	offset := shift % size
-	offsetVal := intutils.Abs(offset)
+	offsetVal := numutils.Abs(offset)
 	if offset < 0 {
 		return string(runes[offsetVal:size]) + string(runes[0:offsetVal])
 	} else {

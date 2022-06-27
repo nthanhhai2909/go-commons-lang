@@ -1,4 +1,4 @@
-package intutils
+package numutils
 
 import (
 	"testing"
