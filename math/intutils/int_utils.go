@@ -1,17 +1,15 @@
 package intutils
 
-type IntNumber interface {
-	int | int8 | int16 | int32 | int64
-}
+import "go-commons-lang/types"
 
-func Abs[T IntNumber](num T) T {
+func Abs[T types.Number](num T) T {
 	if num > 0 {
 		return num
 	}
 	return -num
 }
 
-func Sum[T IntNumber](nums ...T) T {
+func Sum[T types.Number](nums ...T) T {
 	var sum T
 	sum = 0
 	for _, num := range nums {
@@ -20,14 +18,14 @@ func Sum[T IntNumber](nums ...T) T {
 	return sum
 }
 
-func Max[T IntNumber](a, b T) T {
+func Max[T types.Number](a, b T) T {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func Min[T IntNumber](a, b T) T {
+func Min[T types.Number](a, b T) T {
 	if a < b {
 		return a
 	}

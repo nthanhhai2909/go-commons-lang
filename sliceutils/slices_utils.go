@@ -1,6 +1,7 @@
 package sliceutils
 
 import (
+	"go-commons-lang/types"
 	"sort"
 )
 
@@ -68,7 +69,7 @@ func MergeSlices[T any](slices ...[]T) []T {
  * @returns A sorted slice which have all element of all slice
  */
 
-func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
+func MergeSlicesSorted[T interface{}](comparator types.Comparator, slices ...[]T) []T {
 	result := make([]T, 0, defaultCapacity)
 	for _, coll := range slices {
 		for _, item := range coll {
@@ -76,7 +77,7 @@ func MergeSlicesSorted[T any](comparator func(a, b T) bool, slices ...[]T) []T {
 		}
 	}
 	sort.Slice(result, func(i, j int) bool {
-		return comparator(result[i], result[j])
+		return comparator(result[i], result[j]) < 0
 	})
 	return result
 }

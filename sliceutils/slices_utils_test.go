@@ -2,6 +2,7 @@ package sliceutils
 
 import (
 	"fmt"
+	"go-commons-lang/types"
 	"testing"
 )
 
@@ -49,55 +50,72 @@ func TestMergeCollection(t *testing.T) {
 }
 
 func TestMergeCollectionSortedCase1(t *testing.T) {
-	col1 := []int{1, 3, 6}
+	col1 := []int{1, 3, 6, 2}
 	col2 := []int{2, 5, 4}
 
-	result := MergeSlicesSorted(func(a, b int) bool { return a < b }, col1, col2)
-	if len(result) != 6 ||
-		result[0] != 1 ||
-		result[5] != 6 {
-		t.Errorf("MergeSlicesSorted func failed")
+	asc := MergeSlicesSorted(types.IntComparator, col1, col2)
+	if len(asc) != 7 ||
+		asc[0] != 1 ||
+		asc[6] != 6 {
+		t.Errorf("MergeSlicesSorted asc func failed")
+	}
+
+	desc := MergeSlicesSorted(types.InverseIntComparator, col1, col2)
+	fmt.Println(desc)
+	if len(desc) != 7 ||
+		desc[0] != 6 ||
+		desc[6] != 1 {
+		t.Errorf("MergeSlicesSorted desc func failed")
 	}
 }
 
 func TestMergeCollectionSortedCase2(t *testing.T) {
 	student1, student2 := studentData()
-	sortedAscByName := MergeSlicesSorted(func(a, b student) bool {
-		return a.name < b.name
+	asc := MergeSlicesSorted(func(stu1, stu2 interface{}) int {
+		return types.StringComparator(stu1.(student).name, stu2.(student).name)
 	}, student1, student2)
 
-	if len(sortedAscByName) != 6 ||
-		sortedAscByName[0].name != "a" && sortedAscByName[0].age != 24 ||
-		sortedAscByName[1].name != "a" && sortedAscByName[1].age != 34 ||
-		sortedAscByName[5].name != "f" && sortedAscByName[1].age != 21 {
+	if len(asc) != 6 ||
+		asc[0].name != "a" && asc[0].age != 24 ||
+		asc[1].name != "a" && asc[1].age != 34 ||
+		asc[5].name != "f" && asc[1].age != 21 {
 		t.Errorf("MergeSlicesSorted func failed in case sort asc by name")
 	}
+
+	desc := MergeSlicesSorted(func(stu1, stu2 interface{}) int {
+		return types.InverseStringComparator(stu1.(student).name, stu2.(student).name)
+	}, student1, student2)
+
+	if len(desc) != 6 ||
+		desc[5].name != "a" && desc[5].age != 24 ||
+		desc[4].name != "a" && desc[4].age != 34 ||
+		desc[0].name != "f" && desc[0].age != 21 {
+		t.Errorf("MergeSlicesSorted func failed in case sort desc by name")
+	}
+
 }
 
 func TestMergeCollectionSortedCase3(t *testing.T) {
 	student1, student2 := studentData()
-	sortedAscByAge := MergeSlicesSorted(func(a, b student) bool {
-		return a.age < b.age
+	asc := MergeSlicesSorted(func(stu1, stu2 interface{}) int {
+		return types.IntComparator(stu1.(student).age, stu2.(student).age)
 	}, student1, student2)
 
-	if len(sortedAscByAge) != 6 ||
-		sortedAscByAge[0].name != "c" && sortedAscByAge[0].age != 19 ||
-		sortedAscByAge[1].name != "f" && sortedAscByAge[1].age != 24 ||
-		sortedAscByAge[5].name != "b" && sortedAscByAge[5].age != 54 {
-		t.Errorf("MergeSlicesSorted func failed in case sort desc by name")
+	if len(asc) != 6 ||
+		asc[0].name != "c" && asc[0].age != 19 ||
+		asc[1].name != "f" && asc[1].age != 24 ||
+		asc[5].name != "b" && asc[5].age != 54 {
+		t.Errorf("MergeSlicesSorted func failed in case sort asc by age")
 	}
-}
 
-func TestMergeCollectionSortedCase4(t *testing.T) {
-	student1, student2 := studentData()
-	sortedDescByAge := MergeSlicesSorted(func(a, b student) bool {
-		return a.age > b.age
+	desc := MergeSlicesSorted(func(stu1, stu2 interface{}) int {
+		return types.InverseIntComparator(stu1.(student).age, stu2.(student).age)
 	}, student1, student2)
 
-	if len(sortedDescByAge) != 6 ||
-		sortedDescByAge[5].name != "c" && sortedDescByAge[5].age != 19 ||
-		sortedDescByAge[0].name != "b" && sortedDescByAge[0].age != 54 {
-		t.Errorf("MergeSlicesSorted func failed in case sort desc by name")
+	if len(desc) != 6 ||
+		desc[5].name != "c" && desc[5].age != 19 ||
+		desc[0].name != "b" && desc[0].age != 54 {
+		t.Errorf("MergeSlicesSorted func failed in case sort desc by age")
 	}
 }
 
