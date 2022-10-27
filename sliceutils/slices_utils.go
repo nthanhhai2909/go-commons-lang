@@ -403,7 +403,7 @@ func CountMatches[T any](slice []T, predicate types.Predicate) int {
 
 func RemoveAll[T comparable](slice []T, remove []T) []T {
 	if IsEmpty(slice) {
-		return []T{}
+		return slice
 	}
 	removed := make([]T, 0, defaultCapacity)
 	for _, item := range slice {
