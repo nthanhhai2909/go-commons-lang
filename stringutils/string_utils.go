@@ -1,7 +1,7 @@
 package stringutils
 
 import (
-	"go-commons-lang/math/numutils"
+	"github.com/nthanhhai2909/go-commons-lang/math/numutils"
 	"strings"
 	"unicode"
 )

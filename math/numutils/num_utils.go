@@ -1,6 +1,6 @@
 package numutils
 
-import "go-commons-lang/types"
+import "github.com/nthanhhai2909/go-commons-lang/types"
 
 func Abs[T types.Number](num T) T {
 	if num > 0 {

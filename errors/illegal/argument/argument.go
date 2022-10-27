@@ -1,8 +1,8 @@
 package argument
 
 import (
-	"go-commons-lang/stringutils"
-	"go-commons-lang/validate"
+	"github.com/nthanhhai2909/go-commons-lang/stringutils"
+	"github.com/nthanhhai2909/go-commons-lang/validate"
 )
 
 /**

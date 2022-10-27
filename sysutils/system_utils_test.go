@@ -1,7 +1,7 @@
 package sysutils
 
 import (
-	"go-commons-lang/stringutils"
+	"github.com/nthanhhai2909/go-commons-lang/stringutils"
 	"testing"
 )
 

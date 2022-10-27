@@ -2,7 +2,7 @@ package sliceutils
 
 import (
 	"fmt"
-	"go-commons-lang/types"
+	"github.com/nthanhhai2909/go-commons-lang/types"
 	"testing"
 )
 

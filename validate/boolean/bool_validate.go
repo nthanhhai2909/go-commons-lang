@@ -1,7 +1,7 @@
 package boolean
 
 import (
-	"go-commons-lang/errors/illegal/argument"
+	"github.com/nthanhhai2909/go-commons-lang/errors/illegal/argument"
 )
 
 func IsTrue(expression bool, message string) error {

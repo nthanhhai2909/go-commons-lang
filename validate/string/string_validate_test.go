@@ -1,8 +1,8 @@
 package string
 
 import (
-	"go-commons-lang/errors/illegal/argument"
-	"go-commons-lang/validate"
+	"github.com/nthanhhai2909/go-commons-lang/errors/illegal/argument"
+	"github.com/nthanhhai2909/go-commons-lang/validate"
 	"testing"
 )
 

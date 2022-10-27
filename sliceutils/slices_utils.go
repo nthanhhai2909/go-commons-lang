@@ -1,7 +1,7 @@
 package sliceutils
 
 import (
-	"go-commons-lang/types"
+	"github.com/nthanhhai2909/go-commons-lang/types"
 	"sort"
 )
 
